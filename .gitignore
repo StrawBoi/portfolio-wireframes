@@ -1,0 +1,14 @@
+node_modules
+dist
+.DS_Store
+*.local
+.env
+.env.*
+!.env.example
+*.log
+.vite
+coverage
+.turbo
+next-env.d.ts
+apps/*/.next
+apps/*/dist

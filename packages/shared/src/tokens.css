@@ -1,0 +1,32 @@
+/**
+ * Unified design tokens — editorial noir + data intelligence
+ * Merges studio wireframes (--pf-*) with martech editorial palette
+ */
+
+:root {
+  /* Studio / wireframe (Volcanico) */
+  --pf-paper: #f0ede4;
+  --pf-ink: #12100e;
+  --pf-ink-2: rgba(18, 16, 14, 0.62);
+  --pf-hot: #ff4103;
+  --pf-rule: rgba(18, 16, 14, 0.1);
+  --pf-rule-strong: rgba(18, 16, 14, 0.18);
+  --pf-noturno: #001621;
+
+  /* Martech editorial */
+  --mt-bone: #f7f5ec;
+  --mt-ink: #1e1c1a;
+  --mt-accent: #c45532;
+  --mt-muted: rgba(30, 28, 26, 0.62);
+
+  /* Guided hero (paper editorial) */
+  --gh-paper: #f3ede3;
+  --gh-ink: #12100e;
+  --gh-coral: #ff4a1c;
+  --gh-cobalt: #1e5bff;
+  --gh-mint: #00c4a7;
+
+  /* Shared motion */
+  --ease-cinematic: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}

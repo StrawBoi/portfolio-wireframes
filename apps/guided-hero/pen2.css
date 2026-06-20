@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,900;1,900&display=swap");
+
+* {
+	position: relative;
+}
+body,
+html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+html {
+	font-size: 0.5vw;
+}
+body {
+	background: #1d1d1d;
+}
+.wrapper {
+	overflow: hidden;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+}
+
+.debug .guides {
+	background: linear-gradient(
+		to bottom,
+		rgb(0, 0, 0, 0),
+		rgb(0, 0, 0, 0) 98%,
+		red 98%,
+		red
+	);
+	background-size: 100% 25%;
+	height: 74rem;
+	width: 100%;
+	position: absolute;
+	color: white;
+	border-top: 2px solid red;
+}
+
+
+.hero {
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* background:#333; */
+	flex-grow: 0;
+}
+
+.debug .hero {
+	background:rgb(255, 255, 255, 0.1)
+}
+
+.start {
+	align-items: start;
+}
+
+h2 {
+	opacity: 0;
+	display: block;
+	width: fit-content;
+	/* background:#ddd; */
+	color: rgb(67 184 239);
+	font-family: raleway;
+	font-weight: 900;
+	text-transform: uppercase;
+	font-size: 24em;
+	line-height: 1.1cap;
+	margin: 0;
+	user-select: none;
+}

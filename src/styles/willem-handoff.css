@@ -1,0 +1,200 @@
+/* Willem Loading Animation — adapted from Osmo [https://osmo.supply/] */
+
+.willem-handoff {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  overflow: hidden;
+  color: var(--pf-paper);
+  background: var(--pf-paper);
+}
+
+.willem-handoff.is--loading.is--hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.willem-handoff__loader {
+  color: var(--pf-ink);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.willem-handoff__h1 {
+  white-space: nowrap;
+  justify-content: center;
+  font-family: var(--pf-font-display);
+  font-size: clamp(3.5rem, 12.5vw, 12.5rem);
+  font-weight: 600;
+  line-height: 0.75;
+  display: flex;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+}
+
+.willem-handoff__h1-start {
+  justify-content: flex-end;
+  width: 1.5256em;
+  display: flex;
+  overflow: hidden;
+}
+
+.willem-handoff__h1-end {
+  justify-content: flex-start;
+  width: 1.525em;
+  display: flex;
+  overflow: hidden;
+}
+
+.willem-handoff__h1--ahmed .willem-handoff__h1-start {
+  width: 1.22em;
+}
+
+.willem-handoff__h1--ahmed .willem-handoff__h1-end {
+  width: 1.85em;
+}
+
+.willem-handoff__h1--ahmed {
+  padding-inline: 0.08em;
+}
+
+.willem-handoff__letter {
+  display: block;
+  position: relative;
+}
+
+.willem-handoff__loader-box {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 0;
+  display: flex;
+  position: relative;
+}
+
+.willem-handoff__loader-box-inner {
+  justify-content: center;
+  align-items: center;
+  min-width: 1em;
+  height: 95%;
+  display: flex;
+  position: relative;
+}
+
+.willem-handoff__growing-image {
+  justify-content: center;
+  align-items: center;
+  width: 0%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+}
+
+.willem-handoff__growing-image-wrap {
+  width: 100%;
+  min-width: 1em;
+  height: 100%;
+  position: absolute;
+}
+
+.willem-handoff__cover-plate {
+  pointer-events: none;
+  user-select: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.willem-handoff__cover-image-extra {
+  pointer-events: none;
+  object-fit: cover;
+  object-position: 50% 18%;
+  user-select: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.willem-handoff__cover-image-extra.is--1 {
+  z-index: 3;
+}
+
+.willem-handoff__cover-image-extra.is--2 {
+  z-index: 2;
+}
+
+.willem-handoff__content {
+  flex-flow: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  width: 100%;
+  min-height: 100dvh;
+  padding: clamp(1.5rem, 3em, 3em) clamp(2rem, 5vw, 5rem);
+  display: flex;
+  position: relative;
+  pointer-events: none;
+}
+
+.willem-handoff__bottom {
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  display: flex;
+  position: relative;
+  overflow: visible;
+  gap: 2rem;
+}
+
+.willem-handoff__name {
+  white-space: nowrap;
+  font-family: var(--pf-font-display);
+  font-size: clamp(2.25rem, 7.5vw, 5.5rem);
+  font-weight: 600;
+  line-height: 0.9;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.04em;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding-inline: 0.12em;
+  overflow: visible;
+}
+
+.willem-handoff__letter-white {
+  display: block;
+  position: relative;
+  color: var(--pf-paper);
+}
+
+.willem-handoff__status {
+  font-family: var(--pf-font-mono);
+  font-size: clamp(0.65rem, 1.1vw, 0.85rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(240, 237, 228, 0.72);
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .willem-handoff__h1 {
+    font-size: clamp(2.75rem, 16vw, 5.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .willem-handoff__letter,
+  .willem-handoff__letter-white {
+    transform: none !important;
+  }
+}
