@@ -21,7 +21,7 @@ class RootErrorBoundary extends Component<
     if (this.state.error) {
       return (
         <div style={{ padding: 24, fontFamily: "monospace", color: "#0A0F0E", background: "#F0EDE4", minHeight: "100vh" }}>
-          <h1 style={{ color: "#FF4103", marginTop: 0 }}>Render error</h1>
+          <h1 style={{ color: "var(--pf-hot)", marginTop: 0 }}>Render error</h1>
           <pre style={{ whiteSpace: "pre-wrap" }}>{this.state.error.message}</pre>
           <pre style={{ whiteSpace: "pre-wrap", opacity: 0.7, fontSize: 12 }}>{this.state.error.stack}</pre>
         </div>

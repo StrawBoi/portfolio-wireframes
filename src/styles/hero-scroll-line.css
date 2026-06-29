@@ -1,0 +1,102 @@
+/* GSAP stroke-dash scroll meter — terminal readout beside thesis */
+
+.hero-scroll-meter {
+  position: relative;
+  flex: 0 0 auto;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  width: clamp(2.25rem, 4.5vw, 3rem);
+  min-height: clamp(6.5rem, 22vh, 9.5rem);
+  padding-bottom: 0.15rem;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.hero-squeeze--live:not(.hero-squeeze--pending) .hero-scroll-meter,
+.hero-squeeze--portrait-settled .hero-scroll-meter,
+.hero-squeeze--name-flight .hero-scroll-meter,
+.hero-squeeze--scroll-cue .hero-scroll-meter {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hero-squeeze--scroll-frame .hero-scroll-meter,
+.hero-squeeze--scroll-active .hero-scroll-meter,
+.hero-squeeze--scroll-cue .hero-scroll-meter {
+  visibility: visible;
+}
+
+.hero-squeeze--scroll-frame .hero-scroll-meter,
+.hero-squeeze--scroll-active .hero-scroll-meter {
+  opacity: 1;
+}
+
+.hero-scroll-meter__svg {
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  max-height: clamp(5rem, 18vh, 7.5rem);
+  overflow: visible;
+}
+
+.hero-scroll-meter__ghost {
+  stroke: transparent;
+  stroke-width: 0;
+  vector-effect: non-scaling-stroke;
+}
+
+.hero-scroll-meter__ink {
+  stroke: url(#hero-scroll-meter-gradient);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  will-change: stroke-dashoffset;
+}
+
+.hero-scroll-meter__readout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.12rem;
+  line-height: 1;
+}
+
+.hero-scroll-meter__value {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--pf-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-scroll-meter__unit {
+  font-size: 7px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pf-hot);
+}
+
+@media (max-width: 767px) {
+  .hero-scroll-meter {
+    width: 1.75rem;
+    min-height: 5.5rem;
+  }
+
+  .hero-scroll-meter__unit {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-meter__ink {
+    will-change: auto;
+    stroke-dashoffset: 0;
+  }
+}

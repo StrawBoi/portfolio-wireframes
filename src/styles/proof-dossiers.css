@@ -1,0 +1,216 @@
+/* Proof — expanded dossier boards */
+
+.proof-dossiers {
+  margin-top: -0.25rem;
+}
+
+.proof-dossiers__sub-rail {
+  margin: -0.35rem 0 clamp(1.25rem, 3vh, 1.75rem);
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(38, 28, 20, 0.48);
+}
+
+.proof-dossiers__stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 4vh, 2.5rem);
+}
+
+.proof-board {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vh, 2rem);
+}
+
+.proof-board__visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  max-height: clamp(11rem, 34vw, 17rem);
+  border-radius: 2px;
+  overflow: hidden;
+  background: #0a0f0e;
+  border: 1px solid rgba(38, 28, 20, 0.22);
+  box-shadow: 0 28px 72px rgba(10, 15, 14, 0.14);
+}
+
+.proof-board__image {
+  position: absolute;
+  inset: 0;
+  background-position: 50% 35%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  will-change: clip-path;
+}
+
+.proof-board__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 15, 14, 0.55) 0%,
+    rgba(10, 15, 14, 0.12) 45%,
+    rgba(10, 15, 14, 0.2) 100%
+  );
+  pointer-events: none;
+}
+
+.proof-board__code {
+  position: absolute;
+  left: clamp(0.85rem, 2.5vw, 1.35rem);
+  bottom: clamp(0.85rem, 2.5vw, 1.35rem);
+  margin: 0;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--pf-hot);
+  z-index: 2;
+}
+
+.proof-board__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 44rem;
+}
+
+.proof-board__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.proof-board__title {
+  margin: 0;
+  font-family: var(--pf-font-display);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: var(--pf-ink);
+}
+
+.proof-board__meta {
+  margin: 0;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(38, 28, 20, 0.45);
+}
+
+.proof-board__depth {
+  margin: 0.15rem 0 0;
+  max-width: 36rem;
+  font-size: clamp(0.92rem, 1.4vw, 1rem);
+  line-height: 1.45;
+  color: rgba(38, 28, 20, 0.68);
+}
+
+.proof-board__achievement {
+  margin: 0.35rem 0 0;
+  padding-left: 0.7rem;
+  border-left: 2px solid var(--pf-hot);
+  font-family: var(--pf-font-display);
+  font-size: clamp(1rem, 1.65vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--pf-ink);
+}
+
+.proof-board__signals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.65rem, 2vw, 1.25rem);
+  margin: 0.5rem 0 0;
+  padding: 0.85rem 0 0;
+  list-style: none;
+  border-top: 1px solid var(--pf-rule);
+}
+
+.proof-board__signal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.proof-board__signal-k {
+  font-size: 7px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(38, 28, 20, 0.4);
+}
+
+.proof-board__signal-v {
+  font-size: clamp(0.76rem, 1.05vw, 0.86rem);
+  line-height: 1.42;
+  color: rgba(38, 28, 20, 0.7);
+}
+
+.proof-board__deliverables {
+  margin-top: 0.35rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--pf-rule);
+}
+
+.proof-board__deliverables-k {
+  margin: 0 0 0.5rem;
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pf-hot);
+}
+
+.proof-board__deliverables-list {
+  margin: 0;
+  padding: 0 0 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: clamp(0.82rem, 1.15vw, 0.9rem);
+  line-height: 1.45;
+  color: rgba(38, 28, 20, 0.62);
+}
+
+.proof-board__note {
+  margin: 0.5rem 0 0;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(38, 28, 20, 0.38);
+}
+
+.proof-board--industrial .proof-board__image {
+  filter: saturate(0.92) contrast(1.04);
+}
+
+.proof-board--archival .proof-board__image {
+  filter: sepia(0.06) contrast(1.05);
+}
+
+.proof-board--sculptural .proof-board__image {
+  filter: saturate(1.02) contrast(1.03);
+}
+
+@media (max-width: 767px) {
+  .proof-board__visual {
+    aspect-ratio: 16 / 10;
+    max-height: none;
+  }
+
+  .proof-board__signals {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-board__image {
+    will-change: auto;
+    clip-path: none !important;
+  }
+}

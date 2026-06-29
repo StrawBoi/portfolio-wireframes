@@ -1,0 +1,218 @@
+/* Method — editorial rail (sticky labels, stacked beats) */
+
+.method-section {
+  margin-top: -0.35rem;
+  --site-header-h: clamp(3.25rem, 7vh, 4.25rem);
+}
+
+.method-section__rail {
+  width: 100%;
+}
+
+.method-rail {
+  display: grid;
+  grid-template-columns: minmax(8rem, 11.5rem) minmax(0, 1fr);
+  gap: clamp(0.85rem, 2.5vw, 1.75rem);
+  align-items: start;
+  padding: 0;
+}
+
+.method-rail__track {
+  position: sticky;
+  top: calc(var(--site-header-h, 4rem) + 0.65rem);
+  align-self: start;
+}
+
+.method-rail__tabs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 1px solid var(--pf-rule);
+}
+
+.method-rail__tab-item {
+  margin: 0;
+}
+
+.method-rail__tab {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  width: 100%;
+  padding: 0.55rem 0 0.55rem 0.65rem;
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+  text-align: left;
+  transition:
+    border-color 0.28s ease,
+    opacity 0.28s ease;
+  opacity: 0.38;
+}
+
+.method-rail__tab.is-active {
+  border-left-color: var(--pf-hot);
+  opacity: 1;
+}
+
+.method-rail__tab-code {
+  font-size: 7px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pf-hot);
+}
+
+.method-rail__tab-title {
+  font-family: var(--pf-font-display);
+  font-size: clamp(0.72rem, 1.05vw, 0.82rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--pf-ink);
+  text-transform: uppercase;
+}
+
+.method-rail__stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.1rem, 2.5vh, 1.65rem);
+  padding: 0.65rem 0 0;
+  border-top: 1px solid var(--pf-rule);
+  min-height: 0;
+}
+
+.method-rail__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-width: 38rem;
+  padding: 0.85rem 0 0;
+  border-top: 1px solid var(--pf-rule);
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.method-rail__panel .dossier-word__mask-inner,
+.method-rail__panel .dossier-word__fade {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+}
+
+.method-rail__panel:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.method-rail .dossier-word__mask-inner,
+.method-rail .dossier-word__fade {
+  opacity: 1;
+  transform: none;
+}
+
+.method-rail__panel--signal {
+  --method-tint: rgba(255, 65, 3, 0.04);
+}
+
+.method-rail__panel--system {
+  --method-tint: rgba(38, 28, 20, 0.03);
+}
+
+.method-rail__panel--decision {
+  --method-tint: rgba(255, 65, 3, 0.05);
+}
+
+.method-rail__panel--echo {
+  --method-tint: rgba(38, 28, 20, 0.04);
+}
+
+.method-rail__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.method-rail__code {
+  color: var(--pf-hot);
+}
+
+.method-rail__index {
+  color: rgba(38, 28, 20, 0.45);
+}
+
+.method-rail__title {
+  margin: 0;
+  max-width: 14ch;
+  font-family: var(--pf-font-display);
+  font-size: clamp(1.65rem, 3.8vw, 2.35rem);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  color: var(--pf-ink);
+}
+
+.method-rail__lead {
+  margin: 0.15rem 0 0;
+  max-width: 32rem;
+  font-size: clamp(0.88rem, 1.3vw, 0.98rem);
+  line-height: 1.42;
+  color: rgba(38, 28, 20, 0.82);
+}
+
+.method-rail__body {
+  margin: 0;
+  max-width: 28rem;
+  padding-left: 0.55rem;
+  border-left: 2px solid var(--pf-hot);
+  font-size: clamp(0.82rem, 1.1vw, 0.88rem);
+  line-height: 1.45;
+  color: rgba(38, 28, 20, 0.58);
+  font-style: italic;
+}
+
+@media (max-width: 767px) {
+  .method-rail {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .method-rail__track {
+    position: relative;
+    top: auto;
+  }
+
+  .method-rail__tabs {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    border-left: 0;
+    border-bottom: 1px solid var(--pf-rule);
+    padding-bottom: 0.55rem;
+  }
+
+  .method-rail__tab {
+    width: auto;
+    padding: 0.25rem 0.35rem 0.25rem 0;
+    margin-left: 0;
+    border-left: 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .method-rail__tab.is-active {
+    border-left-color: transparent;
+    border-bottom-color: var(--pf-hot);
+  }
+
+  .method-rail__title {
+    font-size: clamp(1.45rem, 6.5vw, 1.85rem);
+  }
+}

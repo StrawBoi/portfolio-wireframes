@@ -1,0 +1,66 @@
+/* Bottom scroll cue — thesis lockup (hero only) */
+
+.hero-scroll-cue {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(1.25rem, 3.5vh, 2rem);
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  padding-inline: clamp(1rem, 5vw, 2.5rem);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.hero-squeeze--live:not(.hero-squeeze--pending) .hero-scroll-cue,
+.hero-squeeze--scroll-cue .hero-scroll-cue {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hero-scroll-cue__copy {
+  width: min(44rem, 100%);
+  text-align: center;
+  pointer-events: auto;
+}
+
+.hero-scroll-cue__lead {
+  margin: 0;
+  font-family: var(--pf-font-display);
+  font-size: clamp(1.2rem, 2.8vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.022em;
+  color: var(--pf-ink);
+}
+
+.pf-cinematic .hero-scroll-cue__lead {
+  color: #ebe6dc;
+}
+
+.hero-scroll-cue__sub {
+  margin: 0.5rem 0 0;
+  font-family: var(--pf-font-sans);
+  font-size: clamp(0.9rem, 1.7vw, 1.05rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+  color: var(--pf-ink-2);
+}
+
+.hero-squeeze--pending .hero-scroll-cue {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (max-width: 767px) {
+  .hero-scroll-cue__lead {
+    font-size: clamp(1.05rem, 4.5vw, 1.25rem);
+  }
+
+  .hero-scroll-cue__sub {
+    font-size: 0.88rem;
+  }
+}

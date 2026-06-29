@@ -3,6 +3,7 @@ import { Btn, Eyebrow, Mono } from "../wireframe/Primitives";
 import { motion } from "motion/react";
 import { useMotionMode } from "../../motion/MotionMode";
 import { fitMatrix } from "@portfolio/shared/content";
+import { SequenceReveal } from "../../motion/SequenceReveal";
 
 function FitMatrix() {
   const { skipEntry, d, easeOut } = useMotionMode();
@@ -69,12 +70,14 @@ function FitMatrix() {
 export function Desktop({ showGrid, fluid }: { showGrid: boolean; fluid?: boolean }) {
   return (
     <Artboard name="06_Services_Fit" viewport="desktop" height={720} showGrid={showGrid} fluid={fluid}>
-      <div className="flex flex-col gap-12" style={{ paddingTop: 96, paddingBottom: 96 }}>
+      <div className="flex flex-col gap-8" style={{ paddingTop: 48, paddingBottom: 48 }}>
         <FrameGrid viewport="desktop">
-          <div style={{ gridColumn: "span 6 / span 6" }} className="flex flex-col gap-6">
+          <SequenceReveal style={{ gridColumn: "span 6 / span 6" }} className="flex flex-col gap-6">
             <Eyebrow>Fit Brief · 06</Eyebrow>
-            <h2 className="pf-h2">Recruiter scan <span className="pf-display-italic">matrix.</span></h2>
-          </div>
+            <h2 className="pf-h2">
+              Recruiter scan <span className="pf-display-italic">matrix.</span>
+            </h2>
+          </SequenceReveal>
           <div style={{ gridColumn: "span 5 / span 5", gridColumnStart: 8 }} className="flex flex-col gap-4 justify-end">
             <p className="pf-lede">
               ~8 seconds. Strength dots, not skill bars. Honest intern positioning —

@@ -42,7 +42,7 @@ export function Artboard({ name, viewport, height, showGrid, cinematic, fluid, c
   return (
     <div className={`flex flex-col items-start gap-3 shrink-0 ${cinematic ? "pf-cinematic" : ""}`}>
       <div className="flex items-center gap-3">
-        <span className="pf-mono" style={cinematic ? { color: "#2BC9B7" } : undefined}>{name}</span>
+        <span className="pf-mono" style={cinematic ? { color: "var(--pf-signal)" } : undefined}>{name}</span>
         <span className="pf-mono-num">
           {viewport} · {cfg.width}px · {cfg.cols}col{cinematic ? " · cinematic" : ""}
         </span>

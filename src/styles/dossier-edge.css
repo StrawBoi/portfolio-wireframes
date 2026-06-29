@@ -1,0 +1,186 @@
+/* Dossier edge marks — archival portfolio file tabs */
+
+.dossier-edge {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 0.45rem;
+  padding-right: 0;
+  pointer-events: none;
+  opacity: 0;
+  visibility: visible;
+  transform: translateY(-50%);
+  transition: opacity 0.4s ease;
+}
+
+.dossier-edge--live {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dossier-edge__file {
+  margin: 0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 7px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--pf-ink-3);
+  opacity: 0.55;
+  user-select: none;
+}
+
+.dossier-edge__tabs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+
+.dossier-edge__item {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dossier-edge__tab {
+  --tab-inset: calc(var(--tab-stagger, 0) * 2px);
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0.62rem 0.42rem 0.62rem 0.55rem;
+  border: 1px solid rgba(38, 28, 20, 0.1);
+  border-right: 0;
+  border-radius: 2px 0 0 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(250, 246, 240, 0.92) 0%,
+    rgba(250, 246, 240, 0.78) 100%
+  );
+  box-shadow:
+    -1px 0 0 rgba(255, 252, 245, 0.65) inset,
+    -3px 0 10px rgba(38, 28, 20, 0.04);
+  cursor: pointer;
+  color: var(--pf-ink-3);
+  transform: translateX(var(--tab-inset));
+  transition:
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease,
+    box-shadow 0.32s ease;
+}
+
+.dossier-edge__tab::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 1px;
+  background: transparent;
+  transition: background 0.28s ease, width 0.28s ease;
+}
+
+.dossier-edge__tab-label {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.dossier-edge__tab:hover {
+  color: var(--pf-ink-2);
+  transform: translateX(calc(var(--tab-inset) - 3px));
+}
+
+.dossier-edge__tab.is-active {
+  color: var(--pf-ink);
+  transform: translateX(-6px);
+  border-color: rgba(255, 65, 3, 0.22);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 65, 3, 0.06) 0%,
+    rgba(250, 246, 240, 0.95) 38%
+  );
+  box-shadow:
+    -1px 0 0 rgba(255, 252, 245, 0.75) inset,
+    -6px 0 16px rgba(255, 65, 3, 0.08);
+}
+
+.dossier-edge__tab.is-active::before {
+  width: 2px;
+  background: var(--pf-hot);
+}
+
+.dossier-edge__tab:focus-visible {
+  outline: 1px solid var(--pf-hot);
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .dossier-edge {
+    top: auto;
+    bottom: 5.5rem;
+    transform: none;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 0.35rem;
+  }
+
+  .dossier-edge__file {
+    display: none;
+  }
+
+  .dossier-edge__tabs {
+    flex-direction: row;
+    gap: 0.2rem;
+    padding-right: 0.5rem;
+  }
+
+  .dossier-edge__tab {
+    padding: 0.38rem 0.5rem;
+    border-right: 1px solid rgba(38, 28, 20, 0.1);
+    border-radius: 2px 2px 0 0;
+    transform: translateY(var(--tab-inset));
+  }
+
+  .dossier-edge__tab-label {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 7px;
+    letter-spacing: 0.18em;
+  }
+
+  .dossier-edge__tab:hover {
+    transform: translateY(calc(var(--tab-inset) - 2px));
+  }
+
+  .dossier-edge__tab.is-active {
+    transform: translateY(-4px);
+  }
+
+  .dossier-edge__tab.is-active::before {
+    top: auto;
+    left: 0.35rem;
+    right: 0.35rem;
+    bottom: 0;
+    width: auto;
+    height: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dossier-edge__tab {
+    transition-duration: 0.01ms;
+  }
+}

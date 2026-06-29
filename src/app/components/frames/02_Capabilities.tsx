@@ -2,6 +2,7 @@ import { Artboard, FrameGrid } from "../Artboard";
 import { Eyebrow, Mono } from "../wireframe/Primitives";
 import { motion } from "motion/react";
 import { useMotionMode } from "../../motion/MotionMode";
+import { SequenceReveal } from "../../motion/SequenceReveal";
 import { helpModes } from "@portfolio/shared/content";
 
 function HelpVisual({ type }: { type: "blank" | "grid" | "funnel" }) {
@@ -91,12 +92,12 @@ export function Desktop({ showGrid, fluid }: { showGrid: boolean; fluid?: boolea
     <Artboard name="02_Capabilities" viewport="desktop" height={720} showGrid={showGrid} fluid={fluid}>
       <div style={{ paddingTop: 96, paddingBottom: 96 }}>
         <FrameGrid viewport="desktop" style={{ rowGap: 56 }}>
-          <div style={{ gridColumn: "span 5 / span 5" }} className="flex flex-col gap-6">
+          <SequenceReveal style={{ gridColumn: "span 5 / span 5" }} className="flex flex-col gap-6">
             <Eyebrow>Fit Brief · 02</Eyebrow>
             <h2 className="pf-h2">
               Ways I can <span className="pf-display-italic">help.</span>
             </h2>
-          </div>
+          </SequenceReveal>
           <div style={{ gridColumn: "span 6 / span 6", gridColumnStart: 7 }} className="flex items-end">
             <p className="pf-lede">
               How can I be a good fit? Three modes — from empty brief to research to ship.
