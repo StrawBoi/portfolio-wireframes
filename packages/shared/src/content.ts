@@ -10,12 +10,20 @@ export const profile = {
   short: "Ahmed",
   mark: "AMM",
   location: "Brussels, Belgium",
-  role: "Strategy · Technology · Marketing",
-  tagline: "Find & execute things you thought impossible.",
+  role: "Marketing · CRM · Analytics · Digital Delivery",
+  headline: "Business needs · Digital execution · Measurable outcomes",
+  tagline: "Useful, clear, and measurable work at the intersection of marketing and operations.",
   heroFine:
-    "From marketing intern to AI-native operator — strategically sharp, technically fluent.",
+    "I connect business needs, digital execution, and measurable outcomes — from CRM and campaigns to analytics, software delivery, and cross-functional leadership.",
+  profileStatement:
+    "My path spans customer-facing roles, software delivery, IT leadership, and consulting — with a current focus on marketing, CRM, and analytics roles in Belgium.",
   linkedin: "https://www.linkedin.com/in/ahmed-mohsen-hanafy/",
-  status: "Available — Summer 2026 internship",
+  email: "Ahmed.ha.mahmoud@outlook.com",
+  phone: "+32 490 36 48 04",
+  website: "ahmedmohsenmostafa.com",
+  languages: ["English C2", "French A2", "Arabic native"],
+  status: "Available — Summer 2026 internship · Odisee BBA 2026",
+  education: "Bachelor Business Management & Marketing, Odisee — Expected 2026",
 };
 
 export const provenWork = {
@@ -24,45 +32,342 @@ export const provenWork = {
   gtm: ["Vantier", "Tackle"],
 };
 
-export const experience = [
+/** CV-aligned impact metrics — hero Ledger variant */
+export const impactMetrics = [
   {
-    from: "Now",
-    to: "Summer 2026",
+    value: 40,
+    suffix: "%",
+    label: "Brand visibility",
+    context: "AEGarden · targeted Instagram & Facebook campaigns",
+    tools: "Canva · Hootsuite",
+    lane: "Marketing",
+  },
+  {
+    value: 27,
+    suffix: "%",
+    label: "Conversion lift",
+    context: "Sharper personas, message fit, and audience targeting",
+    tools: "GTM · Social",
+    lane: "Marketing",
+  },
+  {
+    value: 22,
+    suffix: "%",
+    label: "IT cost reduction",
+    context: "Ammosshipping · AWS cloud migration",
+    tools: "AWS · Ops",
+    lane: "Leadership",
+  },
+  {
+    value: 99.5,
+    suffix: "%",
+    label: "Uptime maintained",
+    context: "International technical operations at scale",
+    tools: "Infrastructure",
+    lane: "Leadership",
+  },
+  {
+    value: 82,
+    suffix: "%",
+    label: "B2B retention",
+    context: "Wisdek · Salesforce & Microsoft Dynamics accounts",
+    tools: "CRM",
+    lane: "Sales",
+  },
+  {
+    value: 90,
+    suffix: "%",
+    label: "Customer satisfaction",
+    context: "Sirius XM · high-volume support environment",
+    tools: "Client",
+    lane: "Service",
+  },
+] as const;
+
+/** Journey arc — hero Arc variant (support → build → lead → consult → marketing) */
+export const journeyArc = [
+  {
+    era: "2011–2012",
+    title: "Client clarity",
+    org: "Vodafone UK",
+    note: "Service quality, communication, and reliable follow-through under pressure.",
+    lane: "Customer",
+  },
+  {
+    era: "2013–2015",
+    title: "Volume & retention",
+    org: "Sirius XM",
+    note: "90% satisfaction in a high-volume sales and support environment.",
+    lane: "Customer",
+  },
+  {
+    era: "2014–2016",
+    title: "Build & ship",
+    org: "GB Arena",
+    note: "Front-end optimization — 40% faster site performance.",
+    lane: "Software",
+  },
+  {
+    era: "2017–2019",
+    title: "B2B accounts",
+    org: "Wisdek",
+    note: "82% retention across Salesforce and Microsoft Dynamics portfolios.",
+    lane: "CRM",
+  },
+  {
+    era: "2019–2023",
+    title: "IT leadership",
+    org: "Ammosshipping",
+    note: "Cross-functional ops — 22% cost cut, 99.5% uptime after AWS migration.",
+    lane: "Leadership",
+  },
+  {
+    era: "2023–2025",
+    title: "Business consulting",
+    org: "Ghasa Marine · AEGarden",
+    note: "Power BI reporting, SWOT, market research, and campaign execution.",
+    lane: "Consulting",
+  },
+  {
+    era: "Now",
+    title: "Marketing direction",
+    org: "Odisee · Brussels",
+    note: "BBA Marketing — internship Summer 2026 · research to execution.",
+    lane: "Marketing",
+  },
+] as const;
+
+/** Skill lanes from CV — hero Brief variant chapter 3 */
+export const skillLanes = [
+  {
+    title: "Marketing & CRM",
+    items: ["Campaigns", "GTM support", "HubSpot", "Salesforce", "Dynamics", "Hootsuite"],
+  },
+  {
+    title: "Analytics & Business",
+    items: ["Power BI", "Tableau", "SWOT", "Market research", "Reporting"],
+  },
+  {
+    title: "Software & Web",
+    items: ["HTML/CSS/JS", "PHP", "MySQL", "WordPress", "Git", "React"],
+  },
+  {
+    title: "Leadership & Ops",
+    items: ["Cross-functional mgmt", "AWS", "Azure", "ServiceNow", "Cloud migration"],
+  },
+] as const;
+
+/** Pinned brief chapters — hero Brief variant */
+export const heroBriefChapters = [
+  {
+    id: "profile",
+    kicker: "Profile",
+    headline: "Useful, clear, measurable.",
+    body: "I build work that connects business needs, digital execution, and outcomes recruiters can verify.",
+  },
+  {
+    id: "proof",
+    kicker: "Proof",
+    headline: "Outcomes before adjectives.",
+    body: "Visibility, conversion, retention, uptime — each tied to a role, a toolset, and a decision.",
+  },
+  {
+    id: "range",
+    kicker: "Operating range",
+    headline: "Wide lens. Marketing focus.",
+    body: "CRM, analytics, software, and ops experience — oriented toward business and marketing functions today.",
+  },
+  {
+    id: "next",
+    kicker: "Next step",
+    headline: "Summer 2026 · Brussels",
+    body: "Marketing, research, or analytics internship — structured, adaptable, internationally minded.",
+  },
+] as const;
+
+/** Full CV experience — frames + hero context */
+export const cvExperience = [
+  {
+    from: "Dec 2024",
+    to: "Feb 2025",
+    company: "AEGarden",
+    location: "Belgium",
+    position: "Marketing & Sales Consultant",
+    achievements: [
+      "Raised brand visibility 40% through targeted Instagram and Facebook campaigns (Canva, Hootsuite).",
+      "Improved conversion 27% by sharpening personas, message fit, and audience targeting.",
+    ],
+  },
+  {
+    from: "May 2023",
+    to: "Dec 2023",
+    company: "Ghasa Marine",
+    location: "Belgium",
+    position: "Business Consultant",
+    achievements: [
+      "Built Power BI and Tableau reporting that turned data into strategic decisions.",
+      "Used SWOT and market research to identify growth opportunities and support planning.",
+    ],
+  },
+  {
+    from: "Feb 2019",
+    to: "Aug 2023",
+    company: "Ammosshipping LTD",
+    location: "International",
+    position: "Information Technology Head Officer",
+    achievements: [
+      "Led technical operations across software, infrastructure, and support.",
+      "Cut IT costs 22% while maintaining 99.5% uptime after AWS cloud migration.",
+    ],
+  },
+  {
+    from: "Jan 2017",
+    to: "Jan 2019",
+    company: "Wisdek",
+    location: "Belgium",
+    position: "Technical Sales Specialist",
+    achievements: [
+      "Managed B2B accounts in Salesforce and Microsoft Dynamics with 82% retention.",
+    ],
+  },
+  {
+    from: "Sep 2014",
+    to: "Nov 2016",
+    company: "GB Arena",
+    location: "Egypt",
+    position: "Junior Web Developer",
+    achievements: [
+      "Improved website speed 40% through front-end optimization and cleaner code.",
+    ],
+  },
+  {
+    from: "Jul 2013",
+    to: "Jan 2015",
+    company: "Sirius XM",
+    location: "Remote",
+    position: "Customer Support & Sales Professional",
+    achievements: [
+      "Reached 90% customer satisfaction in a high-volume support environment.",
+    ],
+  },
+  {
+    from: "Jun 2011",
+    to: "Oct 2012",
+    company: "Vodafone UK",
+    location: "UK",
+    position: "Customer Support Specialist",
+    achievements: [
+      "Recognized for service quality, clear communication, and reliable follow-through.",
+    ],
+  },
+] as const;
+
+export const cvCertifications = [
+  "ITIDA / EGYFWD Advanced Web Development Track",
+  "React",
+  "MySQL for Data Analysis",
+  "JavaScript Algorithms and Data Structures",
+] as const;
+
+/** Hero variant metadata for picker UI */
+export const heroVariants = [
+  {
+    id: "frame",
+    label: "Frame",
+    pitch: "Oversized project teaser — scroll expands into next scene",
+  },
+  {
+    id: "cinema",
+    label: "Cinema",
+    pitch: "Intro-linked — poster expands fullscreen, name settles on paper",
+  },
+  {
+    id: "reel",
+    label: "Reel",
+    pitch: "Full-height poster reel — scroll crossfade, left copy",
+  },
+  {
+    id: "classic",
+    label: "Teaser",
+    pitch: "Floating poster fan — pivots from the right",
+  },
+  {
+    id: "brief",
+    label: "Brief",
+    pitch: "Pinned scroll brief — profile → proof → range → CTA",
+  },
+  {
+    id: "ledger",
+    label: "Ledger",
+    pitch: "Bloomberg-style impact metrics scrubbed on scroll",
+  },
+  {
+    id: "arc",
+    label: "Arc",
+    pitch: "Journey timeline — customer → build → lead → marketing",
+  },
+] as const;
+
+export type HeroVariantId = (typeof heroVariants)[number]["id"];
+
+export const experience = [
+  ...cvExperience.slice(0, 3).map((e) => ({
+    from: e.from,
+    to: e.to,
+    company: e.company,
+    position: e.position,
+    achievements: [...e.achievements],
+  })),
+  {
+    from: "2025",
+    to: "2026",
     company: "Odisee BBA",
     position: "Business Management & Marketing",
     achievements: [
       "Preparing for a marketing, research, or analytics internship in Belgium or Europe.",
-      "Applying a systems mind to market research, campaign logic, and operational follow-through.",
-    ],
-  },
-  {
-    from: "2025",
-    to: "2025",
-    company: "Volvo Belgium",
-    position: "Account Manager · University campaign strategy",
-    achievements: [
-      "Connected market analysis, audience logic, and positioning into a locally resonant campaign proposal.",
-      "Used STP, SWOT, PESTEL, Porter's Five Forces, and competitive benchmarking to frame the recommendation.",
-    ],
-  },
-  {
-    from: "2025",
-    to: "2025",
-    company: "CINEMATEK",
-    position: "Campaign / account strategy support",
-    achievements: [
-      "Turned a multi-month cinema programme into a decade-by-decade audience and content system.",
-      "Balanced cultural storytelling with platform planning, tone of voice, and practical conversion logic.",
+      "Volvo Belgium, CINEMATEK, and martech projects — strategy, research, and execution.",
     ],
   },
 ];
 
 export const technicalExperience = [
-  { role: "Systems mind", context: "11+ years across IT, development, marketing, and consulting" },
-  { role: "Automation edge", context: "Lightweight operations, no-code logic, and cleaner handoffs" },
-  { role: "Analytics habit", context: "Research, segmentation, dashboards, and decision briefs" },
-  { role: "Business lens", context: "Strategy, marketing, and stakeholder communication" },
+  { role: "Marketing & CRM", context: "Campaigns, GTM, HubSpot, Salesforce, Dynamics, Hootsuite, Canva" },
+  { role: "Analytics & business", context: "Power BI, Tableau, SWOT, market research, reporting" },
+  { role: "Software & delivery", context: "11+ years across web, ops, cloud migration, and automation" },
+  { role: "Leadership", context: "Cross-functional management · AWS · international operations" },
 ];
+
+/** Hero teaser — editorial poster cards (intro + landing) */
+export const heroTeaserCards = [
+  {
+    id: "volvo-belgium-campaign",
+    title: "Volvo Belgium",
+    label: "Campaign strategy",
+    image: "/projects/volvo/volvo-poster.png",
+    accent: "#2D5BFF",
+  },
+  {
+    id: "cinematek",
+    title: "CINEMATEK",
+    label: "Cultural campaign",
+    image: "/projects/cinematek/cinematek-poster.png",
+    accent: "#FF5722",
+  },
+  {
+    id: "le-lievrier",
+    title: "Le Lièvrier",
+    label: "Brand identity",
+    image: "/projects/le-lievrier/le-lievrier-poster.png",
+    accent: "#C9A227",
+  },
+] as const;
+
+/** Featured project for frame hero — bottom teaser + scene handoff */
+export const heroFeaturedProject = {
+  ...heroTeaserCards[0],
+  sceneLine: "National automotive campaign — strategy through execution.",
+  exhibit: "EXH-01",
+} as const;
 
 /** Landing reel — fullscreen hero sequence (Volvo → martech → Vantier) */
 export const landingReel = [

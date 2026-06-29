@@ -1,239 +1,335 @@
-# Handoff — portfolio-wireframes
+# Handoff — portfolio-wireframes (detailed)
 
-Brief for the **next agent**. Read this + `docs/MERGE_GUIDE.md` + `docs/sketches/portfolio-draft-v1.png` before coding.
+**For the next agent.** Read this file first, then hard-refresh `#prototype` live. Secondary refs: `docs/HERO_VARIANTS.md` (partially stale — Reel not documented there yet), `docs/STATUS.md`, `docs/MERGE_GUIDE.md`.
 
 ---
 
-## ⚠️ Your first job (read this)
+## Prompt for next chat
 
-**Ahmed has not signed off on the current hero.** He wants the **next agent to think creatively and propose genuinely different directions** — not incremental polish on what exists.
+```
+Read docs/HANDOFF.md first.
 
-### What to do first
+Ahmed has NOT signed off the hero. Current direction: Willem intro → HeroTeaserReel (fullscreen poster parade → stack right → name claims 60%). Reel is DEFAULT at #prototype.
 
-1. Read this file + skim the live flow at `#prototype`
-2. **Do not jump straight to code.** Present **3–5 distinct creative concepts** for the opening 5–8 seconds (intro → first copy)
-3. Each concept: one-sentence pitch, motion story (beats), why it fits editorial noir / recruiter audience, what you’d reject from past failures
-4. Wait for Ahmed to pick one (or hybrid) before a full rebuild
-
-### What “different” means here
-
-Ahmed explicitly rejected feeling like:
-- A dev portfolio template
-- A 3D ring / carousel with 3 flat images (no real depth)
-- Static project wallpaper (boring)
-- Slow gaps between name → fullscreen project → landing
-- Volvo fullscreen that crops the brand off the board mockup
-- Clipped / cramped **AHMED** typography
-- The old Intro Gate landing page (removed — Willem intro is the entry now)
-
-He **has** responded positively to:
-- Osmo **Willem** loader mechanic ([CodePen wBGYEMd](https://codepen.io/osmosupply/pen/wBGYEMd)) cloned with his project photos
-- **Ah | [images] | med** split naming
-- Movement in the background (film strips helped; still not “the one”)
-- Fit Brief system on frames 02–06 (help modes, exhibit viewer, fit matrix, frame 03 shape kit)
+Your job: refine and ship — not restart from zero unless Ahmed asks. Propose changes before large rebuilds. Uncommitted work exists on studio/prototype-v0.4 — commit only if Ahmed requests.
+```
 
 ---
 
 ## Who this is for
 
-**Ahmed Mohsen Mostafa** — Brussels-based. Positioning: marketing / research / analytics **intern** (Summer 2026), not senior IT. Voice: recruiter-first, systems mind, martech confidence.
+**Ahmed Mohsen Mostafa** — Brussels. **Target:** marketing / research / analytics **internship Summer 2026** (Odisee BBA, expected 2026). Not positioned as senior IT.
 
-**Audience:** HR directors, hiring managers, marketing leads in Belgium / Europe.
+**Audience:** HR directors, hiring managers, marketing leads — Belgium / Europe.
 
-**Aesthetic:** Editorial noir × data intelligence. Reference tones: Bloomberg Terminal, Guardian longform, A24 titles. **One accent:** Volcanico `#FF4103`. Everything else tonal.
+**Voice:** Recruiter-first. Business value, measurable outcomes, systems mind. CV-aligned (see `packages/shared/src/content.ts`).
+
+**Aesthetic:** Editorial noir × creamy editorial paper (`--pf-paper` `#F0EDE4`). References: Bloomberg Terminal, Guardian longform, A24 titles, Norell/Taylor whitespace restraint.
+
+**One accent only:** Volcanico `#FF4103`. Everything else tonal.
 
 **Anti-rules (never):**
-- Generic dev portfolio (purple gradients, Inter/Roboto, skill bars, cookie-cutter card grids)
-- Giant centered name + pinned scroll as default hero
-- Spline robot / glassmorphism HR widgets in hero path
-- Floating giant “SWOT / ROI” text without shapes
-- Pre-rendered hero video for interactive diagrams (kills scroll ownership)
-- Explaining what you're doing in code comments — just build it
+- Generic dev portfolio (purple gradients, Inter/Roboto, skill bars, card grids)
+- 3D ring / carousel hero
+- Static project wallpaper as hero bg
+- Film-strip mosaic behind hero (Ahmed rejected — removed)
+- Volvo fullscreen crop / brand cut off
+- Tiny thumbnail posters / detached stepped cascades / fan blades with small images
+- DecisionHero-style essay + diagrams in intro
+- Spline robot / glassmorphism HR widgets in hero
+- Pre-rendered hero video / scroll-scrub video (laggy — removed)
+- Explaining intent in code comments
 
 ---
 
-## North star (evolved — no longer “ring”)
+## North star
 
-> **Cinematic entry → work-first proof → name as logo → scroll journey**
+> **Cinematic entry → posters as proof → name as signal → scroll journey**
 
-| Beat | Current implementation | Notes |
-|------|------------------------|-------|
-| **Entry** | `WillemHandoff` on load — no Intro Gate | Ahmed removed landing page |
-| **Name** | **Ah** \| growing image box \| **med** → fullscreen **Ahmed** | Fix clipping with letter-spacing + padding |
-| **Projects** | 3 flashes in box (Vantier → Martech → Volvo), then brief fullscreen Volvo | Volvo uses `object-fit: contain` to show board |
-| **Background** | `HeroMosaic` — 3 horizontal film strips, scan line, spotlight | Movement ok; hook TBD |
-| **Fullscreen plate** | Random tonal gradient (not Volvo) | Placeholder until layered art |
-| **First copy** | `IdentityHandoff` over dark moving bg | Ahmed + Mohsen Mostafa subtitle + CTAs |
-| **Journey** | Frames 02–07 (Fit Brief reframes) | Sand paper `#F0EDE4` from frame 02 onward |
-
-Sketch method shapes (SWOT, competitor grid, ROI, funnel) belong on **frame 03 Process**, not the intro.
+Posters are the hero first. Name enters after the work speaks. Sketch pillars (frame 03 only): SWOT, competitor grid, ROI, funnel — **not** in intro.
 
 ---
 
-## What is live now (prototype)
+## What is LIVE now (`#prototype`)
 
 **URL:** `http://localhost:5173/#prototype`  
-**Default mode:** `#prototype` (App.tsx sets this when hash is empty)
+**Repo:** `https://github.com/StrawBoi/portfolio-wireframes` (private)  
+**Branch:** `studio/prototype-v0.4` (**active** — uncommitted changes; see below)  
+**Baseline branch:** `main` (initial monorepo commit only)
 
-### Journey flow (`src/app/components/Prototype.tsx`)
+### Journey flow
 
 ```
-WillemHandoff (fixed overlay, auto ~3–4s)
-  → hero:mosaic-reveal → HeroMosaic (film strips, fixed bg)
-  → hero:logo-ready → MainNav + IdentityHandoff
-  → Frames 02–07
+WillemHandoff (~3s, poster flashes in Ah|med box → brief Ahmed → fade)
+  → hero:logo-ready → MainNav (cream shell)
+  → HeroTeaserReel (DEFAULT) OR Teaser fan / Brief / Ledger / Arc via bottom picker
+  → Frames 02–07 (sand paper #F0EDE4)
 ```
 
-**State flags:**
-- `introDone` — Willem finished; main shell mounts
-- `mosaicReady` — listens for `hero:mosaic-reveal`
-- `logoReady` — listens for `hero:logo-ready`
+**Removed from path:** `HeroMosaic` (film strips), `IdentityHandoff` as default hero, Intro Gate, `HeroHookVideo` (scroll-scrub video).
 
-**Events (window):**
-- `hero:mosaic-reveal` — fade in moving background
-- `hero:logo-ready` — nav logo + identity beat
+### Orchestration (`src/app/components/Prototype.tsx`)
 
-### Key components
+| State | Meaning |
+|-------|---------|
+| `introDone` | Willem finished; main shell visible |
+| `logoReady` | `hero:logo-ready` fired; nav shows full name |
+| `heroVariant` | `reel` \| `classic` \| `brief` \| `ledger` \| `arc` from hash |
 
-| File | Status | Role |
-|------|--------|------|
-| `src/app/components/hero/WillemHandoff.tsx` | **Live** | Osmo Willem clone — Ah\|imgs\|med → Ahmed fullscreen |
-| `src/app/components/hero/HeroMosaic.tsx` | **Live** | 3-row infinite film strip + scan + spotlight |
-| `src/app/components/hero/IdentityHandoff.tsx` | **Live** | Post-intro name + tagline + CTAs (dark hero) |
-| `src/app/components/Prototype.tsx` | **Live** | Orchestration (no Intro Gate) |
-| `src/styles/willem-handoff.css` | **Live** | Willem layout |
-| `src/styles/hero-mosaic.css` | **Live** | Film strip styles |
-| `packages/shared/src/content.ts` | **Live** | `landingReel`, `helpModes`, `briefExhibits`, `fitMatrix` |
-| `src/lib/gsapClient.ts` | **Live** | GSAP + ScrollTrigger |
+**Shell:** `background: var(--pf-paper)` — light cream, not dark.
 
-### Frames 02–07 (Fit Brief — wired)
+**Window events:**
+- `hero:logo-ready` — nav identity + end of intro
+- `hero:mosaic-reveal` — still dispatched by Willem skip/finish; **no listener** (mosaic removed)
+
+**Restart:** Click name in nav → replays Willem.
+
+### Hero variants (bottom picker)
+
+| Hash | Label | Component | Role |
+|------|-------|-----------|------|
+| `#prototype` | **Reel** | `HeroTeaserReel.tsx` | **Default** — fullscreen poster parade |
+| `#prototype-teaser` | Teaser | `HeroTeaser.tsx` | Fan layout — pivots from right (deprioritized) |
+| `#prototype-brief` | Brief | `HeroBriefScroll.tsx` | Pinned 4-chapter scroll brief |
+| `#prototype-ledger` | Ledger | `HeroImpactLedger.tsx` | CV metrics scan grid |
+| `#prototype-arc` | Arc | `HeroGuidedArc.tsx` | Journey timeline 2011→now |
+
+Router: `src/app/components/hero/variants/HeroVariantRouter.tsx` — `default` → `HeroTeaserReel`  
+Hash helpers: `src/app/components/hero/readHeroVariant.ts` — `#prototype` → `reel`  
+`App.tsx` treats any `#prototype*` hash as prototype mode.
+
+---
+
+## HeroTeaserReel (current default — Ahmed's latest direction)
+
+**Pitch:** After Willem intro, each campaign poster **owns fullscreen**, then each new poster **pushes the previous right** while maintaining full viewport height. Posters rest stacked on the right; then **Ahmed enters from the left claiming 60%**, compressing posters into the right ~40%.
+
+### Animation sequence (GSAP timeline on mount)
+
+| Step | What happens |
+|------|----------------|
+| 1 | **Volvo** fades in fullscreen (`left: 0`, `width: 100%`) |
+| 2 | **CINEMATEK** enters fullscreen; Volvo slides to right slot |
+| 3 | **Le Lièvrier** enters fullscreen; Volvo + CINEMATEK stack tighter on right |
+| 4 | **Identity** slides in (`x: -8% → 0`); posters animate to final narrow slots; first beat line reveals |
+| 5 | ScrollTrigger on section — gentle opacity/translate exit into frame 02 |
+
+**Layout constants:** `STACK_SLOTS` in `HeroTeaserReel.tsx` — percentage `left`/`width` for push + final stack.  
+**Identity panel:** `width: 60%`, cream gradient fade into posters (`hero-teaser-reel.css`).  
+**Posters:** `object-fit: contain`, full height, transparent bg, drop-shadow only — no frames/borders.
+
+**Files:**
+- `src/app/components/hero/variants/HeroTeaserReel.tsx`
+- `src/styles/hero-teaser-reel.css`
+- Content: `heroTeaserCards` in `content.ts`
+
+**Reduced motion:** Skips timeline; sets final layout immediately.
+
+### Open items Ahmed may want
+
+- **Timing polish** — longer holds on each fullscreen beat, overlap on pushes, later name entrance
+- **Beat cycling** — only first beat shows on identity enter; tie beats to poster sequence or scroll
+- **Mobile** — reel CSS has breakpoints; fullscreen parade may need simplified mobile path
+- **Stack slot tuning** — overlap vs clean side-by-side on right 40%
+- Hide variant picker in production (Reel only)
+- Drop Willem entirely for faster entry
+- Ahmed sign-off: Reel vs Teaser fan vs Brief/Ledger/Arc
+
+---
+
+## HeroTeaser (fan — `#prototype-teaser`)
+
+**Pitch:** Cream surface + floating poster fan pivoting from right edge. Ahmed rejected — images too small, looks poor. Kept for A/B only.
+
+**Files:** `HeroTeaser.tsx`, `hero-teaser.css`
+
+---
+
+## WillemHandoff (intro — still live)
+
+**Mechanic:** Osmo clone [CodePen wBGYEMd](https://codepen.io/osmosupply/pen/wBGYEMd) — **Ah | [growing box] | med** → brief **Ahmed** → fade.
+
+**Images:** `heroTeaserCards` — Volvo, CINEMATEK, Le Lièvrier posters  
+**Assets:** `public/projects/volvo/volvo-poster.png`, `cinematek/cinematek-poster.png`, `le-lievrier/le-lievrier-poster.png`
+
+**Changes from earlier sessions:**
+- **No** fullscreen expand to 100vw (Volvo crop problem)
+- Third flash now Le Lièvrier (was Martech mockup)
+- Shorter handoff to hero
+
+**Files:** `WillemHandoff.tsx`, `willem-handoff.css`
+
+---
+
+## Frames 02–07 (Fit Brief — wired, stable)
 
 | Frame | File | Concept |
 |-------|------|---------|
-| 02 | `02_Capabilities.tsx` | 3 help modes (sketch: scratch → research → design) |
-| 03 | `03_ProcessMap.tsx` | Process flow + `BriefMethodKit` scroll-draw shapes |
+| 02 | `02_Capabilities.tsx` | 3 help modes (scratch → research → design) |
+| 03 | `03_ProcessMap.tsx` | Process + `BriefMethodKit` scroll-draw shapes |
 | 04 | `04_CaseStudies.tsx` | Exhibit viewer EXH-01…04 |
-| 05 | `05_ExperienceProof.tsx` | (unchanged wire) |
+| 05 | `05_ExperienceProof.tsx` | Full `cvExperience` timeline from CV |
 | 06 | `06_ServicesFit.tsx` | Recruiter scan matrix |
-| 07 | `07_ContactClose.tsx` | (unchanged wire) |
+| 07 | `07_ContactClose.tsx` | Close CTA |
 
-### Content — landing reel order
+Frame 05 uses `cvExperience` (7 roles from updated CV), not university-only `experience`.
+
+---
+
+## Content model (`packages/shared/src/content.ts`)
+
+### Profile (CV-synced)
 
 ```ts
-// packages/shared/src/content.ts → landingReel
-1. volvo-belgium-campaign
-2. marketing-intelligence
-3. vantier
+profile.role        // "Marketing · CRM · Analytics · Digital Delivery"
+profile.headline    // "Business needs · Digital execution · Measurable outcomes"
+profile.heroFine    // Long positioning line
+profile.status      // "Available — Summer 2026 internship · Odisee BBA 2026"
+profile.education   // Odisee 2026
 ```
 
-Images under `public/projects/` — many 404 locally; components fall back to accent gradients.
+### Hero assets
+
+```ts
+heroTeaserCards[]   // Volvo, CINEMATEK, Le Lièvrier — intro + reel + teaser
+heroVariants[]      // reel, classic (Teaser), brief, ledger, arc — picker metadata
+impactMetrics[]     // 6 CV numbers — Ledger variant
+journeyArc[]        // 7 eras — Arc variant
+skillLanes[]        // 4 CV skill groups — Brief variant
+heroBriefChapters[] // 4 pinned chapters — Brief variant
+cvExperience[]      // Full work history — frame 05
+```
+
+### Landing reel (legacy)
+
+Still used by dormant `HeroMosaic.tsx` and frame 04 paths. Many `public/projects/*` images 404 locally → gradient fallbacks.
 
 ---
 
-## Hero experiments (in repo, NOT wired)
+## Key files map
 
-| Component | What it was | Ahmed's reaction |
-|-----------|-------------|------------------|
-| `00_IntroGate.tsx` | Landing + Spline + Quick/Slow | **Removed from path** — intro is better without it |
-| `ReelRingTransition.tsx` / `ReelHandoff.tsx` | Reel → ring / signal lock | Ring rejected; signal lock replaced by Willem |
-| `GuidedHero.tsx` | Pinned name + side cards | Baseline; replaced |
-| `MethodToolkitHero.tsx` | Noturno ROI diagram | Disapproved |
-| `ProjectRingHero.tsx` | Auto reel + ring as hero | Too slow, not catchy |
-| `DecisionHero.tsx` | Volvo brief + diagrams | **“SO BAD”** |
+```
+src/app/
+  App.tsx                    # #prototype vs #artboard
+  components/
+    Prototype.tsx              # Intro + hero variant + frames 02–07
+    hero/
+      WillemHandoff.tsx        # Intro loader
+      HeroTeaser.tsx             # Fan variant (#prototype-teaser)
+      HeroMosaic.tsx             # Dormant (not imported)
+      IdentityHandoff.tsx        # Superseded; kept for reference
+      HeroVariantPicker.tsx      # Bottom tabs
+      readHeroVariant.ts         # Hash ↔ variant id
+      variants/
+        HeroVariantRouter.tsx
+        HeroTeaserReel.tsx       # ★ Default hero
+        HeroBriefScroll.tsx
+        HeroImpactLedger.tsx
+        HeroGuidedArc.tsx
+      toolkit/MethodShape.tsx    # Frame 03 BriefMethodKit
+    brief/BriefMethodKit.tsx
+    frames/02–07_*.tsx
+packages/shared/src/content.ts   # ★ Single source of truth
+archive/studio/                  # Disapproved heroes — NOT in build
+```
 
-**Lesson:** Work-first visuals, punctuation transitions, zero copy on proof beats. No strategist decks in hero.
-
----
-
-## Creative directions to explore (seed list — go further)
-
-Past brainstorm + Ahmed feedback. **Your job is to add new ones**, not recycle these blindly:
-
-| Idea | One-liner | Risk |
-|------|-----------|------|
-| **Willem++** | Refine Osmo loader but skip Volvo fullscreen; morph box directly into film world | Incremental — may bore |
-| **Signal lock-on** | Static → crosshair → image resolves (Bloomberg acquire) | Tried briefly; may feel tech-bro |
-| **Curtain slits** | Name letters are blades revealing project strips | Strong editorial |
-| **Contact sheet** | Darkroom red glow, photos burn in sequentially | Cinematic, unique |
-| **Terminal channel hop** | Fake Bloomberg feed switching EXH-01/02/03 | On-brand if restrained |
-| **Horizontal evidence train** | One continuous pan, no fullscreen beat | Good breadth, weak anchor |
-| **Accordion strip** (CodePen RNRwEjr) | Hover-expand project panels — better for **frame 04** than intro | Wrong zone for auto intro |
-| **One beat, one frame** | Single project, single camera move, then name | Failed when copy-heavy (DecisionHero) |
-| **Data mist** | Particle field coalesces into project thumbnails | High effort, high wow if tasteful |
-| **Name as aperture** | Letters ARE the mask; content only visible through letterforms | Typography as logo rule |
-
-**Ask:** What would A24 × Guardian × Bloomberg do for an **intern** portfolio in 2026 — not an agency reel?
+**Styles:** `hero-teaser-reel.css`, `hero-teaser.css`, `hero-variants.css`, `willem-handoff.css`, `theme.css`
 
 ---
 
-## Willem / HeroMosaic — current implementation notes
+## Ahmed feedback history (do not repeat)
 
-### WillemHandoff
-- GSAP timeline: letters rise → box grows → overlap expand to fullscreen → Ahmed letters → mosaic handoff
-- Skip button top-right; `prefers-reduced-motion` + mobile skip animation
-- Volvo: `object-fit: contain`, `object-position` animated top → board content
-- Timing tightened in last session (overlap grow/expand, short hold before mosaic)
-
-### HeroMosaic
-- 3 horizontal rows, infinite GSAP `x` scroll (different speeds/directions)
-- Diagonal tilt, vertical drift, Volcanico scan line, rotating `.is--lit` frame
-- Fixed `position: fixed` behind hero; frame 02+ sand paper covers on scroll
-
-### Known issues (Ahmed feedback)
-- Still feels like a gap between name beat and project fullscreen
-- Volvo fullscreen moment questionable — brand readability depends on asset crop
-- **AHMED** was clipping — partial CSS fix; verify on multiple viewports
-- Film strips = movement but not yet “hook” level mysterious/rich
-
----
-
-## Monorepo map
-
-| Path | Role |
-|------|------|
-| `src/` | **Studio** — live Vite prototype (`#prototype`) |
-| `apps/guided-hero/` | GSAP hero lab (Next.js) — reference only |
-| `apps/martech/` | Production martech site — reference copy |
-| `packages/shared/` | Canonical `content.ts` |
-| `docs/sketches/portfolio-draft-v1.png` | Ahmed's handwritten journey + method shapes |
-| `docs/MERGE_GUIDE.md` | Merge rules, GSAP isolation |
+| Thing | Verdict |
+|-------|---------|
+| 3D ring / `ProjectRingHero` | Rejected — slow, not catchy |
+| `DecisionHero` | **"SO BAD"** |
+| `MethodToolkitHero` | Disapproved |
+| Static mosaic grid | Boring |
+| Film-strip `HeroMosaic` bg | **Removed** |
+| Darkroom A+B intro | Tried → **reverted** |
+| Volvo fullscreen (Willem blow-up) | Rejected — crop/readability |
+| Scroll-scrub hero video | Rejected — laggy |
+| Stepped/cascade small posters | Rejected — detached, not full ads |
+| Fan/roulette with pivot | Rejected — images too small |
+| Reel ⅓-right crossfade only | Rejected — posters not full-height layers |
+| Willem Ah\|med mechanic | **Kept** |
+| Fit Brief frames 02–06 | **Approved / wired** |
+| CV-aligned copy | **Wanted** — partially wired |
+| Fullscreen poster parade → stack → name 60% | **Latest direction** — built, not signed off |
+| Cream paper hero (`--pf-paper`) | **Wanted** — live on Reel + shell |
+| Brief / Ledger / Arc variants | Built for comparison |
 
 ---
 
-## Run locally
+## Uncommitted work (as of Jun 2026 session)
+
+On `studio/prototype-v0.4`:
+
+**Modified:** `content.ts`, `App.tsx`, `Prototype.tsx`, `WillemHandoff.tsx`, `IdentityHandoff.tsx`, `05_ExperienceProof.tsx`, `index.css`, `willem-handoff.css`, `README.md`, `docs/HANDOFF.md`, `docs/STATUS.md`
+
+**New:** `HeroTeaserReel.tsx`, `HeroTeaser.tsx`, hero `variants/*`, `HeroVariantPicker.tsx`, `readHeroVariant.ts`, `hero-teaser-reel.css`, `hero-teaser.css`, `hero-variants.css`, `docs/HERO_VARIANTS.md`, poster PNGs (`volvo`, `cinematek`, `le-lievrier`)
+
+**Next agent:** Run `git status` before assuming clean tree. `npm run build` passes. Commit/push only if Ahmed asks.
+
+---
+
+## Run & test
 
 ```bash
+npm install
 npm run dev
-# Prototype: http://localhost:5173/#prototype
+# → http://localhost:5173/#prototype
 ```
 
-**Dev server often dies** → `ERR_CONNECTION_REFUSED` on 5173. Re-run `npm run dev` from repo root.
+**Dev server dies often** → re-run `npm run dev` from repo root.
 
-**Test:**
-1. Open `#prototype` — Willem plays immediately (no Enter click)
-2. Watch Ah\|med → fullscreen → film strips → identity copy
-3. Scroll frames 02–07
-
-**Build:** `npm run build` (passes)
+**Test checklist:**
+1. `#prototype` — Willem plays → Reel poster parade → name claims 60%
+2. Skip intro works; nav restart replays Willem
+3. Bottom picker: Teaser, Brief, Ledger, Arc switch without crash
+4. Scroll past hero into frames 02–07; frame 03 shapes draw on scroll
+5. Frame 05 shows full CV timeline
+6. `npm run build` passes
+7. Mobile: Willem skips animation; verify reel stacks or degrades gracefully
+8. `#prototype-teaser` — fan variant still loads (comparison only)
 
 ---
 
 ## GSAP rules
 
-- `useGSAP` + `{ scope, revertOnUpdate: true }` in hero components
-- Do **not** mix GSAP and motion/react on the same DOM node
-- ScrollTrigger in `src/lib/gsapClient.ts`
+- `useGSAP` + `{ scope, revertOnUpdate: true }`
+- Do **not** mix GSAP and `motion/react` on same DOM node
+- ScrollTrigger registered in `src/lib/gsapClient.ts`
 - GSAP Flip is Club-only
+- Reel uses on-load timeline + post-timeline ScrollTrigger for exit scrub
 
 ---
 
-## Do not do without explicit ask
+## Do NOT do without explicit ask
 
+- Re-add `HeroMosaic` / film strips to prototype path
+- Re-add scroll-scrub hero video
 - Re-add Intro Gate as default entry
-- Resurrect 3D ring as hero centerpiece
-- Add copy overlays on intro proof beats
-- DecisionHero-style essay + diagrams in intro
-- Commit/push unless Ahmed requests
+- Resurrect 3D ring as hero
+- DecisionHero-style decks in intro
+- Commit/push to GitHub
+- Remove variant picker without Ahmed's say
+- Replace Willem with a totally new intro without approval
+- Revert Reel to small-card / fan layout as default without Ahmed asking
+
+---
+
+## Suggested next steps (priority order)
+
+1. **Ahmed sign-off** on Reel timing and final 60/40 layout
+2. Polish poster stack slots (overlap, spacing, z-index during push)
+3. Beat copy cycling tied to poster sequence or scroll
+4. Mobile-specific reel choreography (or static final state)
+5. Wire `public/resume.pdf` to Ahmed's latest CV PDF
+6. Polish Willem → Reel handoff (no double-flash feel)
+7. Hide picker; single hero for production
+8. Update `docs/HERO_VARIANTS.md` to document Reel
+9. Align frame 02+ copy fully to CV
 
 ---
 
@@ -241,24 +337,22 @@ npm run dev
 
 | Session | Action |
 |---------|--------|
-| Ring / MethodToolkit / DecisionHero | Disapproved |
-| ReelRingTransition + zero copy | Built; ring later removed |
-| Signal Lock-On | Brief attempt |
-| Fit Brief frames 02–04–06 + BriefMethodKit | Wired |
-| Osmo Willem clone | Ahmed asked to clone CodePen wBGYEMd with project photos |
-| Intro Gate removed | Willem is entry |
-| Name → Ahmed (Ah\|med) | Loader + identity |
-| HeroMosaic v1 | Static grid — boring |
-| HeroMosaic v2 | Film strips + movement |
-| Timing / clipping / Volvo contain | Last polish pass |
-| **This handoff** | Next agent: **propose creative alternatives before coding** |
-| Darkroom A+B intro | Tried → **reverted** — Willem kept |
-| Random gradient plate | Replaced Volvo fullscreen land |
-| Repo cleanup | Unused heroes → `archive/`; docs consolidated |
-| **Branch** | `studio/prototype-v0.4` — see `docs/STATUS.md` |
+| Ring / DecisionHero / MethodToolkit | Disapproved → `archive/` |
+| Fit Brief 02–04–06 + BriefMethodKit | Wired |
+| Osmo Willem + Ah\|med | Live |
+| HeroMosaic v2 film strips | Live then **removed** |
+| Darkroom A+B | Reverted |
+| Repo cleanup + GitHub push | `main` + `studio/prototype-v0.4` |
+| CV ingest (FR/EN PDFs) | `content.ts` expanded |
+| Hero variants Brief/Ledger/Arc | Built for A/B |
+| HeroTeaser fan + poster images | Built; deprioritized |
+| HeroTeaserReel + fullscreen parade | **Current default** |
+| Le Lièvrier poster replaces Martech | intro + reel + content |
+| Cream paper shell + reel bg | Live |
+| HeroHookVideo scroll-scrub | Added then **removed** |
 
 ---
 
 ## Adaptive memory
 
-User preferences: `~/.cursor/skills/adaptive/MEMORY.md`
+User preferences may also live in: `~/.cursor/skills/adaptive/MEMORY.md`

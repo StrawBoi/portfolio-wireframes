@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useMotionMode } from "../../motion/MotionMode";
 import { methodCards, processFlow } from "@portfolio/shared/content";
 import { BriefMethodKit } from "../brief/BriefMethodKit";
+import { SequenceReveal, LineReveal } from "../../motion/SequenceReveal";
 
 function Node({ n, t, s }: { n: string; t: string; s: string }) {
   return (
@@ -21,13 +22,15 @@ export function Desktop({ showGrid, fluid }: { showGrid: boolean; fluid?: boolea
     <Artboard name="03_Process_Map" viewport="desktop" height={1480} showGrid={showGrid} fluid={fluid}>
       <div className="flex flex-col gap-16" style={{ paddingTop: 96, paddingBottom: 96 }}>
         <FrameGrid viewport="desktop">
-          <div style={{ gridColumn: "span 6 / span 6" }} className="flex flex-col gap-6">
+          <SequenceReveal style={{ gridColumn: "span 6 / span 6" }} className="flex flex-col gap-6">
             <Eyebrow>Fit Brief · 03</Eyebrow>
             <h2 className="pf-h2">
-              How the work<br />
-              <span className="pf-display-italic">actually gets done.</span>
+              <LineReveal>How the work</LineReveal>
+              <LineReveal delay={0.08}>
+                <span className="pf-display-italic">actually gets done.</span>
+              </LineReveal>
             </h2>
-          </div>
+          </SequenceReveal>
           <div style={{ gridColumn: "span 5 / span 5", gridColumnStart: 8 }} className="flex items-end">
             <p className="pf-lede">
               Six stages plus the method shapes from the sketch — SWOT, competitor grid,

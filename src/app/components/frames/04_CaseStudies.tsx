@@ -1,8 +1,11 @@
 import { Artboard, FrameGrid } from "../Artboard";
 import { Eyebrow, Mono } from "../wireframe/Primitives";
 import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "../../../lib/gsapClient";
 import { useMotionMode } from "../../motion/MotionMode";
+import { SequenceReveal, LineReveal } from "../../motion/SequenceReveal";
 import { briefExhibits } from "@portfolio/shared/content";
 
 function ExhibitImage({ src, accent, alt }: { src: string; accent: string; alt: string }) {
@@ -30,7 +33,7 @@ function SignalRow({ label, value, index }: { label: string; value: string; inde
       transition={{ duration: d(0.45, 0.18), delay: skipEntry ? 0 : index * 0.06, ease: easeOut }}
     >
       <Mono>{label}</Mono>
-      <span className="pf-body" style={{ fontSize: 14, color: "var(--pf-ink)" }}>{value}</span>
+      <span className="pf-body" style={{ fontSize: 14, color: "var(--pf-ink)" }} data-cursor="text">{value}</span>
     </motion.div>
   );
 }
@@ -39,9 +42,33 @@ function ExhibitViewer() {
   const [active, setActive] = useState(0);
   const exhibit = briefExhibits[active];
   const { d, easeOut, skipEntry } = useMotionMode();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const container = containerRef.current;
+      const image = imageRef.current;
+      if (!container || !image) return;
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return;
+
+      gsap.to(image, {
+        yPercent: -8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: container,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    },
+    { scope: containerRef, dependencies: [active], revertOnUpdate: true }
+  );
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8" ref={containerRef}>
       <FrameGrid viewport="desktop" style={{ rowGap: 32 }}>
         <motion.div
           style={{ gridColumn: "span 8 / span 8" }}
@@ -49,10 +76,15 @@ function ExhibitViewer() {
           layout
           transition={{ duration: d(0.4, 0.16), ease: easeOut }}
         >
-          <div style={{ height: 480, border: "1px solid var(--pf-rule)", background: "var(--pf-paper-2)" }}>
+          <div
+            className="exhibit-image-wrapper"
+            data-cursor="hover"
+            style={{ height: 480, border: "1px solid var(--pf-rule)", background: "var(--pf-paper-2)" }}
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={exhibit.id}
+                ref={imageRef}
                 className="h-full w-full"
                 initial={skipEntry ? false : { opacity: 0, scale: 1.02 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -111,6 +143,7 @@ function ExhibitViewer() {
               fontSize: 11,
               letterSpacing: "0.06em",
             }}
+            data-cursor="hover"
           >
             {ex.exhibitId}
           </button>
@@ -121,22 +154,19 @@ function ExhibitViewer() {
 }
 
 export function Desktop({ showGrid, fluid }: { showGrid: boolean; fluid?: boolean }) {
-  const { d, easeOut, skipEntry } = useMotionMode();
   return (
     <Artboard name="04_Case_Studies" viewport="desktop" height={920} showGrid={showGrid} fluid={fluid}>
       <div className="flex flex-col gap-16" style={{ paddingTop: 96, paddingBottom: 96 }}>
         <FrameGrid viewport="desktop">
-          <motion.div
-            style={{ gridColumn: "span 6 / span 6" }}
-            className="flex flex-col gap-6"
-            initial={skipEntry ? false : { opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-10%" }}
-            transition={{ duration: d(0.6, 0.24), ease: easeOut }}
-          >
+          <SequenceReveal style={{ gridColumn: "span 6 / span 6" }} className="flex flex-col gap-6">
             <Eyebrow>Fit Brief · 04</Eyebrow>
-            <h2 className="pf-h2">Exhibits with <span className="pf-display-italic">real signal.</span></h2>
-          </motion.div>
+            <h2 className="pf-h2">
+              <LineReveal>Exhibits with </LineReveal>
+              <LineReveal delay={0.08}>
+                <span className="pf-display-italic">real signal.</span>
+              </LineReveal>
+            </h2>
+          </SequenceReveal>
           <div style={{ gridColumn: "span 5 / span 5", gridColumnStart: 8 }} className="flex items-end">
             <p className="pf-lede">
               Evidence before explanation. Full-bleed boards, three signal lines per case —

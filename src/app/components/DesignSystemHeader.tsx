@@ -1,16 +1,16 @@
 const SWATCHES_LIGHT = [
-  { name: "Sand · paper", v: "#F0EDE4", hex: "#F0EDE4" },
-  { name: "Card", v: "#F7F5EE", hex: "#F7F5EE" },
-  { name: "Ink", v: "#0A0F0E", hex: "#0A0F0E" },
-  { name: "Cyprus · structural", v: "#004741", hex: "#004741" },
-  { name: "Volcanico · motion", v: "#FF4103", hex: "#FF4103" },
+  { name: "Paper", v: "#F0EEE9", hex: "#F0EEE9" },
+  { name: "Card", v: "#F5F3EC", hex: "#F5F3EC" },
+  { name: "Ink", v: "#1A2328", hex: "#1A2328" },
+  { name: "Teal · signal", v: "#1B6B5A", hex: "#1B6B5A" },
+  { name: "Ember · motion", v: "#D4622A", hex: "#D4622A" },
 ];
 const SWATCHES_DARK = [
-  { name: "Noturno · paper", v: "#001621", hex: "#001621" },
-  { name: "Card", v: "#062A38", hex: "#062A38" },
-  { name: "Sand · text", v: "#F0EDE4", hex: "#F0EDE4" },
-  { name: "Cyprus · lifted", v: "#2BC9B7", hex: "#2BC9B7" },
-  { name: "Volcanico · motion", v: "#FF4103", hex: "#FF4103" },
+  { name: "Forest ink", v: "#0C1218", hex: "#0C1218" },
+  { name: "Card", v: "#18222C", hex: "#18222C" },
+  { name: "Sand · text", v: "#E9E5DC", hex: "#E9E5DC" },
+  { name: "Teal · signal", v: "#2A8F7A", hex: "#2A8F7A" },
+  { name: "Ember · motion", v: "#D4622A", hex: "#D4622A" },
 ];
 
 export function DesignSystemHeader() {
@@ -32,7 +32,7 @@ export function DesignSystemHeader() {
             Editorial body. <span className="pf-display-italic" style={{ color: "var(--pf-hot)" }}>Cinematic</span> intro &amp; close.
           </h2>
         </div>
-        <span className="pf-mono">Dual-mode · Cyprus structural · Volcanico motion</span>
+        <span className="pf-mono">Dossier Signal · teal structure · ember motion</span>
       </div>
 
       <div className="grid grid-cols-12 gap-6">
@@ -41,12 +41,12 @@ export function DesignSystemHeader() {
           <span className="pf-mono">Typography</span>
           <div className="flex flex-col gap-3">
             <span className="pf-display" style={{ fontSize: 72 }}>
-              Bricolage<span className="pf-display-italic" style={{ color: "var(--pf-hot)" }}> Grotesque.</span>
+              Instrument<span className="pf-display-italic" style={{ color: "var(--pf-hot)" }}> Serif.</span>
             </span>
             <span className="pf-body" style={{ color: "var(--pf-ink)" }}>
-              Inter Tight — body. Marketing-confident tracking for paragraphs, UI, nav.
+              Instrument Sans — body, UI, nav. Editorial authority without grotesque noise.
             </span>
-            <span className="pf-mono">JetBrains Mono — labels · meta · numerals</span>
+            <span className="pf-mono">IBM Plex Mono — labels · meta · data layer</span>
           </div>
         </div>
 

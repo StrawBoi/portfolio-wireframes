@@ -24,7 +24,7 @@ Toggle Studio modes via URL hash:
 | Branch | Purpose |
 |--------|---------|
 | `main` | Baseline / preserved default |
-| `studio/prototype-v0.4` | **Active** — Willem hero + Fit Brief prototype |
+| `studio/prototype-v0.4` | **Active** — HeroTeaser + Willem posters + Fit Brief |
 
 Agents: clone and checkout `studio/prototype-v0.4` for current work.
 
@@ -35,7 +35,7 @@ Agents: clone and checkout `studio/prototype-v0.4` for current work.
 - [Project tree](./docs/PROJECT_TREE.md) — full directory map
 - [Merge guide](./docs/MERGE_GUIDE.md) — integration paths between the three apps
 - [Scope plan](./docs/plans/scope-context-develop-modular-sloth.md) — original wireframe brief
-- [Archive](../archive/README.md) — unused hero experiments + shadcn ui kit
+- [Hero variants](./docs/HERO_VARIANTS.md) — Brief / Ledger / Arc comparison
 
 ## Shared package
 

@@ -3,7 +3,8 @@ import { Eyebrow, Mono } from "../wireframe/Primitives";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { useMotionMode } from "../../motion/MotionMode";
-import { provenWork, experience, technicalExperience } from "@portfolio/shared/content";
+import { provenWork, cvExperience, technicalExperience } from "@portfolio/shared/content";
+import { SequenceReveal, LineReveal } from "../../motion/SequenceReveal";
 
 const LOGOS = [
   ...provenWork.teams,
@@ -11,7 +12,7 @@ const LOGOS = [
   ...provenWork.gtm,
 ];
 
-const ROLES = experience.map((e) => ({
+const ROLES = cvExperience.map((e) => ({
   y: `${e.from} — ${e.to}`,
   co: e.company,
   role: e.position,
@@ -410,16 +411,16 @@ export function Desktop({ showGrid, fluid }: { showGrid: boolean; fluid?: boolea
   const { skipEntry, d, easeOut } = useMotionMode();
   return (
     <Artboard name="05_Experience_Proof" viewport="desktop" height={1480} showGrid={showGrid} fluid={fluid}>
-      <div className="flex flex-col" style={{ paddingTop: 96, paddingBottom: 96, gap: 96 }}>
+      <div className="flex flex-col" style={{ paddingTop: 48, paddingBottom: 48, gap: 48 }}>
 
         {/* Band 1 — Proof / clients */}
         <FrameGrid viewport="desktop">
-          <div style={{ gridColumn: "span 5 / span 5" }} className="flex flex-col gap-6">
+          <SequenceReveal style={{ gridColumn: "span 5 / span 5" }} className="flex flex-col gap-6">
             <Eyebrow>Proof</Eyebrow>
             <h2 className="pf-h2">
               11+ years. <span className="pf-display-italic">Systems mind.</span>
             </h2>
-          </div>
+          </SequenceReveal>
           <div style={{ gridColumn: "span 6 / span 6", gridColumnStart: 7 }} className="flex items-end">
             <p className="pf-lede">
               In-house, embedded, and independent. Work delivered across automotive,

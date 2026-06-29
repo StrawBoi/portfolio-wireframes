@@ -1,0 +1,174 @@
+/* Project section — cursor frame reveals (extracted from hero) */
+
+.project-cursor {
+  position: absolute;
+  inset: 0;
+  z-index: 18;
+  pointer-events: none;
+}
+
+.project-cursor__stage {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.project-cursor__zone-hints {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.3;
+  transition: opacity 0.35s ease;
+}
+
+.project-cursor--on .project-cursor__zone-hints {
+  opacity: 0.55;
+}
+
+.project-cursor__zone-hint {
+  position: absolute;
+  bottom: 12%;
+  width: 1px;
+  height: 2rem;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--pf-hot) 40%, transparent));
+  transform: translateX(-50%);
+}
+
+.project-cursor__trail {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  overflow: visible;
+}
+
+.project-cursor__trail-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--pf-hot) 55%, transparent);
+  opacity: 0;
+  filter: blur(0.5px);
+  box-shadow:
+    0 0 10px 2px rgba(255, 65, 3, 0.18),
+    0 0 24px 6px rgba(255, 65, 3, 0.08);
+  will-change: transform, opacity;
+}
+
+.project-cursor--trail .project-cursor__reveal {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.project-cursor__reveal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 24;
+  width: clamp(14rem, 36vw, 30rem);
+  pointer-events: none;
+  will-change: transform, opacity;
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+}
+
+.project-cursor--on .project-cursor__reveal {
+  pointer-events: auto;
+}
+
+.project-cursor__stack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.project-cursor__card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0;
+  will-change: opacity;
+}
+
+.project-cursor__mat {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #0a0c0e;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--pf-ink) 18%, transparent),
+    0 16px 44px rgba(0, 0, 0, 0.42);
+}
+
+.project-cursor__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  pointer-events: none;
+}
+
+.project-cursor__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.15rem 0.65rem;
+  margin-top: 0.45rem;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-cursor__index {
+  grid-row: 1 / span 2;
+  color: var(--pf-hot);
+  align-self: center;
+}
+
+.project-cursor__title {
+  color: var(--pf-ink);
+}
+
+.project-cursor__eyebrow {
+  color: var(--pf-ink-3);
+}
+
+.project-cursor__quote {
+  position: relative;
+  margin: 0.35rem 0 0;
+  padding: 0.55rem 0.65rem;
+  background: color-mix(in srgb, var(--pf-paper-2) 94%, transparent);
+  border-left: 2px solid var(--pf-hot);
+}
+
+.project-cursor__quote p {
+  margin: 0 0 0.35rem;
+  font-family: var(--pf-font-sans);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--pf-ink-2);
+  font-style: italic;
+}
+
+.project-cursor__quote cite {
+  font-style: normal;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pf-ink-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-cursor {
+    display: none;
+  }
+}

@@ -1,0 +1,16 @@
+/* Site shell — lives beneath intro matte until dissolve */
+
+.site-reveal {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--pf-paper);
+}
+
+.site-reveal--beneath {
+  pointer-events: none;
+}
+
+.site-reveal--ready {
+  pointer-events: auto;
+}

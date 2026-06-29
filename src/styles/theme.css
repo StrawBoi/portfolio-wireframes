@@ -119,45 +119,46 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* === Portfolio design system tokens ===
-   Dual-system narrative:
-   - Editorial body (Sand + Cyprus + Volcanico) → frames 01–06
-   - Cinematic dark (Noturno + Sand + Volcanico) → frames 00, 07, dark bands
-   Volcanico (#FF4103) is the through-line motion accent across both modes.
+/* === Portfolio design system — Dossier Signal ===
+   Light: Cloud Dancer paper + slate ink + teal structure + ember motion
+   Dark (.pf-cinematic): forest ink + sand type + muted teal + ember motion
+   Typography: Instrument Serif (display) · Instrument Sans (UI) · IBM Plex Mono (data)
 */
 :root {
-  /* Editorial body — light */
-  --pf-paper: #F0EDE4;       /* Sand */
-  --pf-paper-2: #E6E2D4;
-  --pf-card: #F7F5EE;
-  --pf-ink: #0A0F0E;          /* near-black w/ green undertone */
-  --pf-ink-2: #36544F;        /* muted Cyprus for body text */
-  --pf-ink-3: #7B8784;
-  --pf-rule: #CFCBBA;
-  --pf-rule-strong: #8C9692;
-  --pf-signal: #004741;       /* Cyprus — architectural accent */
-  --pf-signal-soft: #C8D8D5;
-  --pf-hot: #FF4103;          /* Volcanico — motion / CTA / signal */
+  /* Light — restorative editorial */
+  --pf-paper: #f0eee9;
+  --pf-paper-2: #e8e3d8;
+  --pf-paper-edge: #ddd6c9;
+  --pf-card: #f5f3ec;
+  --pf-ink: #1a2328;
+  --pf-ink-2: #4a5c63;
+  --pf-ink-3: #7a8a90;
+  --pf-rule: #d4cdc2;
+  --pf-rule-strong: #9aa8ad;
+  --pf-signal: #1b6b5a;
+  --pf-signal-soft: #d4e8e2;
+  --pf-hot: #d4622a;
 
-  --pf-font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
-  --pf-font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
-  --pf-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --pf-font-display: "Instrument Serif", "Georgia", ui-serif, serif;
+  --pf-font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --pf-font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
-/* Cinematic dark — used for Intro Gate, Contact Close, and dark bands */
+/* Cinematic dark — default experience */
 .pf-dark,
 .pf-cinematic {
-  --pf-paper: #001621;        /* Noturno */
-  --pf-paper-2: #04212E;
-  --pf-card: #062A38;
-  --pf-ink: #F0EDE4;          /* Sand */
-  --pf-ink-2: #8FA0A4;
-  --pf-ink-3: #5A6D72;
-  --pf-rule: #163240;
-  --pf-rule-strong: #2A4856;
-  --pf-signal: #2BC9B7;       /* lifted Cyprus for legibility on dark */
-  --pf-signal-soft: #06302C;
-  --pf-hot: #FF4103;          /* Volcanico stays exact — through-line accent */
+  --pf-paper: #0c1218;
+  --pf-paper-2: #141d26;
+  --pf-paper-edge: #1a2832;
+  --pf-card: #18222c;
+  --pf-ink: #e9e5dc;
+  --pf-ink-2: #8fa3a8;
+  --pf-ink-3: #627580;
+  --pf-rule: #24333d;
+  --pf-rule-strong: #3a4f5c;
+  --pf-signal: #2a8f7a;
+  --pf-signal-soft: #0f2a24;
+  --pf-hot: #d4622a;
 }
 
 .pf {
@@ -167,11 +168,11 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.pf-display { font-family: var(--pf-font-display); font-weight: 600; letter-spacing: -0.035em; line-height: 0.95; font-variation-settings: "wdth" 100, "opsz" 96; }
-.pf-display-italic { font-family: var(--pf-font-display); font-weight: 500; font-style: italic; letter-spacing: -0.03em; line-height: 0.95; font-variation-settings: "wdth" 92, "opsz" 96; }
-.pf-h1 { font-family: var(--pf-font-display); font-size: clamp(56px, 7vw, 112px); font-weight: 600; letter-spacing: -0.04em; line-height: 0.92; font-variation-settings: "wdth" 100, "opsz" 96; }
-.pf-h2 { font-family: var(--pf-font-display); font-size: clamp(40px, 4.6vw, 68px); font-weight: 600; letter-spacing: -0.035em; line-height: 0.98; font-variation-settings: "wdth" 100, "opsz" 64; }
-.pf-h3 { font-family: var(--pf-font-display); font-size: 30px; font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; font-variation-settings: "wdth" 100, "opsz" 32; }
+.pf-display { font-family: var(--pf-font-display); font-weight: 600; letter-spacing: -0.028em; line-height: 0.98; }
+.pf-display-italic { font-family: var(--pf-font-display); font-weight: 500; font-style: italic; letter-spacing: -0.022em; line-height: 0.98; }
+.pf-h1 { font-family: var(--pf-font-display); font-size: clamp(56px, 7vw, 112px); font-weight: 600; letter-spacing: -0.032em; line-height: 0.94; }
+.pf-h2 { font-family: var(--pf-font-display); font-size: clamp(40px, 4.6vw, 68px); font-weight: 600; letter-spacing: -0.028em; line-height: 1; }
+.pf-h3 { font-family: var(--pf-font-display); font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.06; }
 .pf-lede { font-family: var(--pf-font-sans); font-size: 18px; font-weight: 400; line-height: 1.5; letter-spacing: -0.005em; color: var(--pf-ink-2); }
 .pf-body { font-family: var(--pf-font-sans); font-size: 15px; font-weight: 400; line-height: 1.55; color: var(--pf-ink-2); }
 .pf-small { font-family: var(--pf-font-sans); font-size: 13px; font-weight: 400; line-height: 1.45; color: var(--pf-ink-2); }
