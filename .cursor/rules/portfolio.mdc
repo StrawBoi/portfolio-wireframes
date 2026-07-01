@@ -1,0 +1,11 @@
+---
+description: Portfolio prototype stack and adaptive pointers
+alwaysApply: true
+---
+
+# portfolio-wireframes
+
+- **Stack:** Vite + React + GSAP/ScrollTrigger. Hero path: `HeroFrameReveal` + `HeroStoryStage` only (no variant picker in prototype).
+- **Design system:** Dossier Signal — Instrument Serif/Sans, IBM Plex Mono, ember `#D4622A`, dark `.pf-cinematic`.
+- **Visual / identity work:** invoke `/adaptive` or read `~/.cursor/skills/adaptive/MEMORY.md`. New site sections: `~/.cursor/skills/adaptive/WEBSITE_PROJECT_PROMPT.md`.
+- **Live flow:** Loader → WillemHandoff → hero → FeaturedExhibits → Method → Proof → Story 05–07 → Contact. Data: `heroSocialPosts.ts`, `heroHook.ts`.
