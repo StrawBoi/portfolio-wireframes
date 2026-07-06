@@ -17,7 +17,8 @@ Quick snapshot. **Full detail:** [HANDOFF.md](./HANDOFF.md) · **Awwwards roadma
 
 **Handoff for next agent:** [HANDOFF_MAJD_CLONE.md](./HANDOFF_MAJD_CLONE.md)  
 **Premium prototype (visual engineer):** [PREMIUM_DIRECTOR.md](./PREMIUM_DIRECTOR.md) → [Phase A](./PREMIUM_PHASE_A.md)  
-**Marketing-first narrative (Opus):** [PREMIUM_NARRATIVE_BRIEF.md](./PREMIUM_NARRATIVE_BRIEF.md)
+**Marketing-first narrative (Opus):** [PREMIUM_NARRATIVE_BRIEF.md](./PREMIUM_NARRATIVE_BRIEF.md)  
+**Master schedule (you + agents):** [PREMIUM_ROADMAP.md](./PREMIUM_ROADMAP.md) ← start here
 
 ---
 
