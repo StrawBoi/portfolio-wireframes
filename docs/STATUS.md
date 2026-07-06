@@ -15,7 +15,8 @@ Quick snapshot. **Full detail:** [HANDOFF.md](./HANDOFF.md) · **Awwwards roadma
 | `#social` | IG profile + grid handoff lab |
 | `#majd` | Majd Framer clone reference — **hero motion needs rework** |
 
-**Handoff for next agent:** [HANDOFF_MAJD_CLONE.md](./HANDOFF_MAJD_CLONE.md)
+**Handoff for next agent:** [HANDOFF_MAJD_CLONE.md](./HANDOFF_MAJD_CLONE.md)  
+**Premium prototype (visual engineer):** [PREMIUM_DIRECTOR.md](./PREMIUM_DIRECTOR.md) → [Phase A](./PREMIUM_PHASE_A.md)
 
 ---
 
