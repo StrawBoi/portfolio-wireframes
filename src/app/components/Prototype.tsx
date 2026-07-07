@@ -5,6 +5,7 @@ import { prefersSaveData } from "./hero/introAssets";
 import { Loader } from "./Loader";
 import { WillemHandoff } from "./hero/WillemHandoff";
 import { HeroFrameReveal } from "./hero/variants/HeroFrameReveal";
+import { CampaignGrid } from "./campaign/CampaignGrid";
 import { FeaturedExhibits } from "./exhibit/FeaturedExhibits";
 import { MethodSection } from "./method/MethodSection";
 import { DarkModeToggle } from "./DarkModeToggle";
@@ -27,9 +28,11 @@ function FrameSection({ id, children }: { id: string; children: ReactNode }) {
 
 export function Prototype() {
   const rootRef = useRef<HTMLDivElement>(null);
+  const emberScrimRef = useRef<HTMLDivElement>(null);
   const [loaderDone, setLoaderDone] = useState(() => sessionStorage.getItem("pf-loader-done") === "1");
   const [introDone, setIntroDone] = useState(false);
   const [isDark, setIsDark] = useState(true);
+  const [toneTransitioning, setToneTransitioning] = useState(false);
   const [sessionKey, setSessionKey] = useState(0);
   const mode: MotionMode = resolveMotionMode();
 
@@ -49,8 +52,15 @@ export function Prototype() {
       /* ignore */
     }
     setIntroDone(false);
+    setIsDark(true);
     setSessionKey((k) => k + 1);
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }, []);
+
+  const handleExhibitsRelease = useCallback(() => {
+    setToneTransitioning(true);
+    setIsDark(false);
+    window.setTimeout(() => setToneTransitioning(false), 420);
   }, []);
 
   useEffect(() => {
@@ -72,9 +82,21 @@ export function Prototype() {
     <MotionModeProvider mode={mode}>
       <div
         ref={rootRef}
-        className={isDark ? "pf-cinematic" : undefined}
+        className={[
+          isDark ? "pf-cinematic" : "",
+          toneTransitioning ? "pf-tone-transition" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
         style={{ background: "var(--pf-paper)", minHeight: "100vh" }}
       >
+        <div
+          ref={emberScrimRef}
+          className="pf-ember-scrim"
+          aria-hidden
+          data-layer="ember-scrim"
+        />
+
         {!loaderDone && <Loader onComplete={() => setLoaderDone(true)} />}
 
         <main style={{ paddingTop: 0 }}>
@@ -89,7 +111,12 @@ export function Prototype() {
               >
                 <MainNav />
                 <HeroFrameReveal active={introDone} />
-                <FeaturedExhibits />
+                <CampaignGrid />
+                <FeaturedExhibits
+                  onRelease={handleExhibitsRelease}
+                  emberScrimRef={emberScrimRef}
+                  showSpotlight={false}
+                />
                 <MethodSection />
                 {introDone && (
                   <DarkModeToggle isDark={isDark} onToggle={() => setIsDark((d) => !d)} />

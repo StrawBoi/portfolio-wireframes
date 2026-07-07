@@ -161,6 +161,34 @@
   --pf-hot: #d4622a;
 }
 
+/* The Release — tonal handoff (400ms) */
+.pf-tone-transition,
+.pf-tone-transition .site-reveal,
+.pf-tone-transition .campaign-grid,
+.pf-tone-transition .featured-exhibits,
+.pf-tone-transition .exhibition-wall__pin,
+.pf-tone-transition .method-section,
+.pf-tone-transition .proof-dossiers,
+.pf-tone-transition .story-section {
+  transition:
+    background-color 400ms ease,
+    color 400ms ease,
+    border-color 400ms ease;
+}
+
+.pf-ember-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse 90% 55% at 50% 100%,
+    rgba(212, 98, 42, 0.35),
+    transparent 68%
+  );
+}
+
 .pf {
   font-family: var(--pf-font-sans);
   color: var(--pf-ink);

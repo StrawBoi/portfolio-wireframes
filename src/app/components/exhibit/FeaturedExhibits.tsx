@@ -1,13 +1,23 @@
-import { useRef } from "react";
+import { useRef, type RefObject } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "../../../lib/gsapClient";
 import { EXHIBITS_CURATOR_LINE, EXHIBITS_SUB_RAIL, featuredCampaignExhibits } from "../../data/featuredExhibits";
 import { ExhibitGallery } from "./ExhibitGallery";
 import { ExhibitSpotlight } from "./ExhibitSpotlight";
-import { bindExhibitScrollSequence, bindSpotlightSequence } from "./useExhibitScrollSequence";
+import {
+  bindExhibitScrollSequence,
+  bindExhibitsRelease,
+  bindSpotlightSequence,
+} from "./useExhibitScrollSequence";
 import { useMotionMode } from "../../motion/MotionMode";
 
-export function FeaturedExhibits() {
+type Props = {
+  onRelease?: () => void;
+  emberScrimRef?: RefObject<HTMLElement | null>;
+  showSpotlight?: boolean;
+};
+
+export function FeaturedExhibits({ onRelease, emberScrimRef, showSpotlight = true }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -19,20 +29,45 @@ export function FeaturedExhibits() {
       const pin = pinRef.current;
       const gallery = galleryRef.current;
       const spotlight = spotlightRef.current;
-      if (!pin || !gallery) return;
+      const section = sectionRef.current;
+      if (!pin || !gallery || !section) return;
+
+      const emberScrim = emberScrimRef?.current ?? null;
 
       const cleanupGallery = bindExhibitScrollSequence({
         pinRoot: pin,
         galleryRoot: gallery,
+        emberScrim,
+        onPlateHandoffReady: () => {
+          const firstCaption = gallery.querySelector<HTMLElement>(
+            ".exhibit-gallery__caption-panel",
+          );
+          const firstPlate = gallery.querySelector<HTMLElement>(".exhibit-gallery__plate");
+          if (!firstCaption && !firstPlate) return;
+
+          gsap.fromTo(
+            [firstCaption, firstPlate?.querySelector(".exhibit-gallery__plate-copy")].filter(
+              Boolean,
+            ),
+            { opacity: 0, y: 10 },
+            { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", delay: 0.15 },
+          );
+        },
       });
       const cleanupSpotlight = spotlight ? bindSpotlightSequence(spotlight) : undefined;
+      const cleanupRelease = bindExhibitsRelease({
+        section,
+        emberScrim,
+        onRelease,
+      });
 
       return () => {
         cleanupGallery?.();
         cleanupSpotlight?.();
+        cleanupRelease?.();
       };
     },
-    { scope: sectionRef },
+    { scope: sectionRef, dependencies: [onRelease, emberScrimRef] },
   );
 
   useGSAP(
@@ -89,7 +124,7 @@ export function FeaturedExhibits() {
           </div>
         </div>
 
-        <ExhibitSpotlight ref={spotlightRef} />
+        {showSpotlight ? <ExhibitSpotlight ref={spotlightRef} /> : null}
       </div>
     </section>
   );

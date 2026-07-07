@@ -1,8 +1,10 @@
 import gsap, { ScrollTrigger } from "../../../lib/gsapClient";
 
 const SCROLL_VH = 0.75;
-const FADE_START = 0.55;
-const FADE_END = 0.92;
+const SIGNAL_FADE_START = 0.55;
+const SIGNAL_FADE_END = 0.75;
+const STAGE_FADE_START = 0.75;
+const STAGE_FADE_END = 0.92;
 const SCRUB_SMOOTH = 0.38;
 
 export function bindHeroScrollSequence({
@@ -54,22 +56,23 @@ export function bindHeroScrollSequence({
     },
   });
 
-  const fadeDur = FADE_END - FADE_START;
+  const signalDur = SIGNAL_FADE_END - SIGNAL_FADE_START;
+  const stageDur = STAGE_FADE_END - STAGE_FADE_START;
 
-  if (storyStage) {
-    tl.to(storyStage, { opacity: 0, scale: 0.98, duration: fadeDur * 0.85 }, FADE_START);
-  }
-  if (projectCursor) {
-    tl.to(projectCursor, { opacity: 0, duration: fadeDur * 0.85 }, FADE_START);
-  }
   if (signal) {
-    tl.to(signal, { opacity: 0, y: -12, duration: fadeDur * 0.7 }, FADE_START);
+    tl.to(signal, { opacity: 0, y: -12, duration: signalDur * 0.85 }, SIGNAL_FADE_START);
   }
   if (cvCta) {
-    tl.to(cvCta, { opacity: 0, y: 8, duration: fadeDur * 0.65 }, FADE_START);
+    tl.to(cvCta, { opacity: 0, y: 8, duration: signalDur * 0.8 }, SIGNAL_FADE_START);
   }
+  tl.to(scrollCue, { opacity: 0, y: -8, duration: signalDur * 0.9 }, SIGNAL_FADE_START + 0.02);
 
-  tl.to(scrollCue, { opacity: 0, y: -8, duration: fadeDur }, FADE_START + 0.04);
+  if (storyStage) {
+    tl.to(storyStage, { opacity: 0, scale: 0.98, duration: stageDur * 0.9 }, STAGE_FADE_START);
+  }
+  if (projectCursor) {
+    tl.to(projectCursor, { opacity: 0, duration: stageDur * 0.75 }, STAGE_FADE_START);
+  }
 
   const onResize = () => ScrollTrigger.refresh();
   window.addEventListener("resize", onResize);
@@ -82,6 +85,8 @@ export function bindHeroScrollSequence({
     gsap.set(scrollCue, { clearProps: "all" });
     if (projectCursor) gsap.set(projectCursor, { clearProps: "opacity" });
     if (storyStage) gsap.set(storyStage, { clearProps: "all" });
+    if (signal) gsap.set(signal, { clearProps: "all" });
+    if (cvCta) gsap.set(cvCta, { clearProps: "all" });
     resetCue();
   };
 }

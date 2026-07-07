@@ -208,11 +208,15 @@ function anchorPlates(plates: HTMLElement[], activeIndex = 0) {
 export function bindExhibitScrollSequence({
   pinRoot,
   galleryRoot,
+  emberScrim,
   onPinned,
+  onPlateHandoffReady,
 }: {
   pinRoot: HTMLElement;
   galleryRoot: HTMLElement;
+  emberScrim?: HTMLElement | null;
   onPinned?: (pinned: boolean) => void;
+  onPlateHandoffReady?: () => void;
 }) {
   const reduced =
     typeof window !== "undefined" &&
@@ -274,6 +278,28 @@ export function bindExhibitScrollSequence({
 
   const syncFromProgress = (progress: number) => {
     syncExhibitContent(progress, count, captionPanels, plateCopies);
+
+    const active = activeIndexForProgress(progress, count);
+    const localT = localProgressForIndex(progress, active, count);
+
+    if (emberScrim) {
+      const scrimT =
+        progress < 0.66
+          ? 0
+          : progress > 0.85
+            ? 0.35
+            : gsap.utils.mapRange(0.66, 0.85, 0, 0.35, progress);
+      gsap.set(emberScrim, { opacity: Math.min(0.35, scrimT) });
+    }
+
+    if (active === count - 1 && progress >= 0.66) {
+      const centerPlate = plates[active];
+      const scaleBoost = 1 + 0.08 * gsap.utils.clamp(0, 1, localT);
+      const role = plateRole(active, active, count);
+      if (role === "center") {
+        gsap.set(centerPlate, { scale: PLATE_PROPS.center.scale * scaleBoost });
+      }
+    }
   };
 
   const tl = gsap.timeline({
@@ -291,6 +317,7 @@ export function bindExhibitScrollSequence({
         pinRoot.classList.add("exhibition-wall--pinned");
         pinRoot.style.setProperty("--site-header-h", `${headerPad()}px`);
         onPinned?.(true);
+        onPlateHandoffReady?.();
       },
       onLeave: () => {
         pinRoot.classList.remove("exhibition-wall--pinned");
@@ -344,7 +371,50 @@ export function bindExhibitScrollSequence({
     });
     const ink = galleryRoot.querySelector<SVGLineElement>(".exhibit-gallery__meter-ink");
     if (ink) gsap.set(ink, { clearProps: "strokeDashoffset,strokeDasharray" });
+    if (emberScrim) gsap.set(emberScrim, { clearProps: "opacity" });
     onPinned?.(false);
+  };
+}
+
+export function bindExhibitsRelease({
+  section,
+  emberScrim,
+  onRelease,
+}: {
+  section: HTMLElement;
+  emberScrim?: HTMLElement | null;
+  onRelease?: () => void;
+}) {
+  const reduced =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reduced) {
+    return () => undefined;
+  }
+
+  let released = false;
+
+  const st = ScrollTrigger.create({
+    scroller: document.documentElement,
+    trigger: section,
+    start: "top top",
+    end: "bottom top",
+    onLeave: () => {
+      if (released) return;
+      released = true;
+      if (emberScrim) {
+        gsap.to(emberScrim, { opacity: 0, duration: 0.2, ease: "power2.out" });
+      }
+      onRelease?.();
+    },
+    onEnterBack: () => {
+      released = false;
+    },
+  });
+
+  return () => {
+    st.kill();
   };
 }
 

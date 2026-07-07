@@ -168,7 +168,79 @@ export const socialGridCells: SocialGridCell[] = [
   },
 ];
 
+/** Prototype campaign grid — 9 cells, 3 per campaign, one visual angle each */
+export const campaignGridCells: SocialGridCell[] = [
+  {
+    id: "volvo-hero",
+    image: "/projects/volvo/volvo-poster.png",
+    video: "/projects/volvo/volvo-hero.mp4",
+    videoWebm: "/projects/volvo/volvo-hero.webm",
+    title: "Volvo Belgium",
+    eyebrow: "Made in Belgium",
+    layout: "hero",
+  },
+  {
+    id: "cinematek-70s",
+    image: "/projects/cinematek/cinematek-decades-70s-poster.png",
+    title: "CINEMATEK",
+    eyebrow: "The 70s · Action",
+    layout: "tall",
+  },
+  {
+    id: "lievrier",
+    image: "/projects/le-lievrier/le-lievrier-intro-noir.png",
+    title: "Le Lièvrier",
+    eyebrow: "Café d'exception",
+    layout: "wide",
+  },
+  {
+    id: "volvo-presenting",
+    image: "/projects/volvo/Presenting.png",
+    title: "Volvo Belgium",
+    eyebrow: "Situation analysis",
+    layout: "square",
+  },
+  {
+    id: "cinematek-60s",
+    image: "/projects/cinematek/cinematek-decades-60s-poster.png",
+    title: "CINEMATEK",
+    eyebrow: "The 60s",
+    layout: "square",
+  },
+  {
+    id: "volvo-board",
+    image: "/projects/volvo/volvo-belgium-campaign-board-mockup.png",
+    title: "Volvo Belgium",
+    eyebrow: "Campaign board",
+    layout: "square",
+  },
+  {
+    id: "volvo-strategy",
+    image: "/projects/volvo/Strategy.png",
+    title: "Volvo Belgium",
+    eyebrow: "Strategy",
+    layout: "square",
+  },
+  {
+    id: "cinematek-board",
+    image: "/projects/cinematek/cinematek-campaign-board-mockup.png",
+    title: "CINEMATEK",
+    eyebrow: "Campaign board",
+    layout: "square",
+  },
+  {
+    id: "volvo-sprint",
+    image: "/projects/volvo/Sprint.png",
+    title: "Volvo Belgium",
+    eyebrow: "Creative sprint",
+    layout: "square",
+  },
+];
+
 export const socialGridPeekFrom = Math.max(0, socialGridCells.length - 6);
+
+/** Withheld last row — 3 process cells */
+export const campaignGridPeekFrom = Math.max(0, campaignGridCells.length - 3);
 
 /** Central scroll handoff — flies from hero into grid */
 export const heroScrollPick = {
